@@ -106,6 +106,77 @@
   .nefndir li em{font-style:normal;color:var(--ink-soft);font-size:.74rem;white-space:nowrap}
   .nefndir li em.lead{color:var(--orange-deep);font-weight:700}
   .mp-radh{font-size:.82rem;color:var(--orange-deep);font-weight:600;margin-top:10px;background:var(--orange-soft);border-radius:8px;padding:6px 10px;display:inline-block}
+  .tm-group{margin-top:22px}
+  .tm-ghead{display:flex;align-items:baseline;justify-content:space-between;border-bottom:2px solid var(--orange);padding-bottom:6px}
+  .tm-ghead h3{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;letter-spacing:-.01em}
+  .tm-count{font-size:.74rem;color:var(--ink-soft);white-space:nowrap}
+  .tm-gsub{font-size:.8rem;color:var(--orange-deep);font-weight:600;margin:4px 0 6px}
+  .tm-list{display:flex;flex-direction:column}
+  .tm-item{display:grid;grid-template-columns:104px 1fr auto;gap:12px;align-items:baseline;padding:8px 6px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);transition:background .12s}
+  .tm-item:hover{background:var(--paper-2)}
+  .tm-type{font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:3px 6px;border-radius:6px;text-align:center;white-space:nowrap}
+  .tm-frv{background:var(--orange-soft);color:var(--orange-deep)}
+  .tm-thal{background:#E2ECEC;color:#266360}
+  .tm-log{background:#211B14;color:#FBF6EE}
+  .tm-thingsep{height:1px;background:linear-gradient(90deg,var(--orange),transparent);margin:28px 0 0}
+  .ch{width:100%;height:auto;display:block}
+  .ch-grid{stroke:var(--line);stroke-width:1}
+  .ch-ylab{fill:var(--ink-soft);font-size:11px;text-anchor:end;font-family:'Hanken Grotesk',sans-serif}
+  .ch-xlab{fill:var(--ink);font-size:12px;text-anchor:middle;font-weight:600;font-family:'Hanken Grotesk',sans-serif}
+  .ch-xsub{fill:var(--ink-soft);font-size:10px;text-anchor:middle;font-family:'Hanken Grotesk',sans-serif}
+  .ch-val{fill:var(--orange-deep);font-size:12px;text-anchor:middle;font-weight:700;font-family:'Hanken Grotesk',sans-serif}
+  .ch-area{fill:var(--orange-soft);opacity:.5}
+  .ch-line{fill:none;stroke:var(--orange);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+  .ch-pt{fill:#fff;stroke:var(--orange);stroke-width:2.5}
+  .ch-pt-e{fill:var(--orange);stroke:var(--orange-deep)}
+  .sf-table{width:100%;border-collapse:collapse;font-size:.88rem}
+  .sf-table th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);border-bottom:2px solid var(--orange);padding:0 8px 6px}
+  .sf-table td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  .sf-name{font-weight:600;white-space:nowrap}
+  .sf-pct{font-weight:700;color:var(--orange-deep);white-space:nowrap}
+  .sf-note{color:var(--ink-soft);font-size:.82rem}
+  @media(max-width:680px){.sf-note{display:none}}
+  .sokn-row{padding:11px 0;border-bottom:1px solid var(--line)}
+  .sokn-row:last-child{border-bottom:none}
+  .sokn-p{font-weight:600;font-size:.9rem;margin-bottom:6px}
+  .sokn-row.hi .sokn-p{color:var(--orange-deep)}
+  .sokn-metric{display:flex;align-items:center;gap:8px;margin:3px 0}
+  .sokn-tag{font-size:.72rem;color:var(--ink-soft);width:42px;flex:0 0 42px}
+  .sokn-track{flex:1;height:14px;background:var(--paper-2);border-radius:7px;overflow:hidden}
+  .sokn-fill{height:100%;border-radius:7px}
+  .sokn-fill.v2{background:var(--orange)}
+  .sokn-fill.v3{background:var(--orange-soft)}
+  .sokn-row.hi .sokn-fill.v2{background:var(--orange-deep)}
+  .sokn-val{font-size:.8rem;font-weight:700;width:40px;flex:0 0 40px;text-align:right}
+  .mal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+  .mal-card{background:var(--paper-2);border-radius:10px;padding:14px 16px}
+  .mal-k{font-weight:700;color:var(--orange-deep);margin-bottom:8px;font-size:.92rem}
+  .mal-list{margin:0;padding-left:18px}
+  .mal-list li{font-size:.86rem;margin:4px 0;line-height:1.35}
+  .snap-row{display:flex;align-items:center;gap:10px;margin:6px 0}
+  .snap-p{font-size:.82rem;width:135px;flex:0 0 135px}
+  .snap-row.hi .snap-p{font-weight:700;color:var(--orange-deep)}
+  .snap-track{flex:1;height:12px;background:var(--paper-2);border-radius:6px;overflow:hidden}
+  .snap-fill{height:100%;background:var(--ink-soft);border-radius:6px}
+  .snap-row.hi .snap-fill{background:var(--orange)}
+  .snap-val{font-size:.8rem;font-weight:600;width:48px;flex:0 0 48px;text-align:right}
+  .xt{display:flex;align-items:center;gap:10px;margin:5px 0}
+  .xt-g{font-size:.82rem;width:140px;flex:0 0 140px}
+  .xt-track{flex:1;height:12px;background:var(--paper-2);border-radius:6px;overflow:hidden}
+  .xt-fill{height:100%;background:var(--orange);border-radius:6px}
+  .xt-v{font-size:.8rem;font-weight:700;width:36px;flex:0 0 36px;text-align:right}
+  .tm-title{font-weight:600;font-size:.9rem}
+  .tm-note{font-size:.82rem;color:var(--ink-soft)}
+  .tm-by{display:block;font-size:.74rem;color:var(--orange-deep);font-weight:600;margin-top:2px}
+  .tm-meta{font-size:.72rem;color:var(--ink-soft);white-space:nowrap;text-align:right}
+  .tm-hi-wrap{margin-top:10px}
+  .tm-hi{display:block;text-decoration:none;color:var(--ink);background:linear-gradient(180deg,var(--orange-soft),var(--paper-2));border:1px solid var(--orange);border-radius:12px;padding:14px 16px;transition:box-shadow .12s}
+  .tm-hi:hover{box-shadow:0 6px 18px rgba(242,107,29,.22)}
+  .tm-hi-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+  .tm-hi-meta{font-size:.74rem;color:var(--orange-deep);font-weight:600}
+  .tm-hi h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin:2px 0 4px}
+  .tm-hi p{font-size:.86rem;color:var(--ink-soft);line-height:1.45}
+  @media(max-width:680px){.tm-item{grid-template-columns:1fr;gap:3px}.tm-meta{text-align:left}}
 
   /* bill list */
   .bill{display:flex;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
@@ -199,10 +270,10 @@ const DATA = {
 
   /* ---- Landsmál: fylgi ---- */
   national: {
-    headline: "13,5%",
+    headline: "10,6%",
     headlineLabel: "Þingfylgi Viðreisnar á landsvísu",
-    headlineMeta: "Prósent, könnun lögð fyrir 21. jan – 16. feb 2026. Þriðji stærsti flokkur landsins.",
-    context: "Viðreisn situr í ríkisstjórn frá 21. desember 2024 og hefur fjóra ráðherra. Fylgi flokksins er jafnast allra flokka eftir búsetu og sterkast meðal kvenna, ungs fólks, háskólamenntaðra og millitekjuhópa (Maskína/Prósent, vor 2026).",
+    headlineMeta: "Þjóðarpúls Gallup, lagður fyrir 30. apríl – 31. maí 2026. Niður úr kjörfylgi (15,8%).",
+    context: "Viðreisn situr í ríkisstjórn frá 21. desember 2024 og hefur fjóra ráðherra. Fylgi flokksins hefur dalað úr kjörfylgi (15,8% í nóvember 2024) niður í rúm 10% vorið 2026 — dæmigerð þróun hjá flokki í ríkisstjórn. Fylgið er jafnast allra flokka eftir búsetu og sterkast meðal kvenna, fólks á aldrinum 35–54 ára og háskólamenntaðra (Gallup/Prósent, 2026).",
     // Kjörnir fulltrúar Viðreisnar í sveitarstjórnarkosningunum 16. maí 2026
     seatsByMuni: [
       {name:"Reykjavík", seats:2, total:23, q:false},
@@ -215,6 +286,76 @@ const DATA = {
       {name:"Múlaþing", seats:1, total:11, q:false}
     ]
   },
+
+  /* ---- Þjóðfylgi: tímaröð (gagnakerfi) ---- */
+  fylgiSaga: {
+    label: "Þróun þingfylgis Viðreisnar á landsvísu",
+    yMin: 8, yMax: 17,
+    points: [
+      {t:"Nóv ’24", v:15.8, src:"Alþingiskosningar", e:true},
+      {t:"Nóv ’24", v:15.5, src:"Gallup þjóðarpúls"},
+      {t:"Júlí ’25", v:14.6, src:"Gallup þjóðarpúls"},
+      {t:"Sept ’25", v:12.9, src:"Gallup þjóðarpúls"},
+      {t:"Feb ’26", v:13.5, src:"Prósent"},
+      {t:"Maí ’26", v:10.6, src:"Gallup þjóðarpúls"}
+    ]
+  },
+
+  /* ---- Sveitarstjórnarkosningar 16. maí 2026: úrslit Viðreisnar ---- */
+  sveitarUrslit: [
+    {name:"Reykjavík",     pct:null, seats:2, total:23, change:"+0", status:"maj", note:"Björg Magnúsdóttir · mesta fylgi frá fyrsta framboði 2018; í meirihluta með D og B"},
+    {name:"Hafnarfjörður", pct:14.3, seats:2, total:11, change:"+1", status:"maj", note:"+5,1 prósentustig frá 2022; í meirihluta með D og S"},
+    {name:"Kópavogur",     pct:null, seats:1, total:11, change:"+0", status:"opp", note:"María Ellen Steingrímsdóttir · minnihluti (D hreinn meirihluti)"},
+    {name:"Ísafjarðarbær", pct:null, seats:1, total:9,  change:null, status:"maj", note:"Gylfi Ólafsson bæjarstjóri · C + Framsókn og óháðir"},
+    {name:"Mosfellsbær",   pct:null, seats:1, total:11, change:null, status:"maj", note:"Forseti bæjarstjórnar · meirihluti D + C"},
+    {name:"Akranes",       pct:null, seats:1, total:9,  change:null, status:"opp", note:"Jón Guðni Guðmundsson · minnihluti"},
+    {name:"Árborg",        pct:null, seats:1, total:11, change:null, status:"opp", note:"Heiðrún Kristmundsdóttir · minnihluti"},
+    {name:"Múlaþing",      pct:11.2, seats:1, total:11, change:null, status:"opp", note:"Sameiginlegur listi Austurlistans og Viðreisnar (L) · minnihluti"}
+  ],
+
+  /* ---- Reykjavík: fylgisferill Viðreisnar (kannanir, Maskína-rakning) ---- */
+  rvkSaga: {
+    label:"Fylgi Viðreisnar í Reykjavík — mánaðarleg rakning",
+    yMin:4, yMax:14, yStep:2,
+    points:[
+      {t:"feb ’24",v:7.1},{t:"mar ’24",v:8.4},{t:"apr ’24",v:6.3},{t:"maí ’24",v:5.5},
+      {t:"jún ’24",v:9.6},{t:"júl ’24",v:7.9},{t:"ágú ’24",v:6.5},{t:"sep ’24",v:9.8},
+      {t:"jan ’25",v:11.0},{t:"feb ’25",v:10.3},{t:"mar ’25",v:9.5},{t:"apr ’25",v:9.0},
+      {t:"maí ’25",v:10.6},{t:"jún ’25",v:10.1},{t:"júl ’25",v:12.1},{t:"ágú ’25",v:8.9},
+      {t:"sep ’25",v:10.1},{t:"okt ’25",v:9.6},{t:"nóv ’25",v:8.6},{t:"des ’25",v:9.7},
+      {t:"jan ’26",v:10.0},{t:"feb ’26",v:10.7},{t:"mar ’26",v:11.3},{t:"apr ’26",v:9.5}
+    ]
+  },
+  // Nýjasta Reykjavíkurmæling (apríl 2026) — öll framboð, raðað
+  rvkSnapshot: [
+    {p:"Sjálfstæðisflokkur",v:29.1},{p:"Samfylkingin",v:22.7},{p:"Vinstrið",v:13.2},
+    {p:"Miðflokkurinn",v:10.3},{p:"Viðreisn",v:9.5,hi:true},{p:"Sósíalistaflokkurinn",v:4.1},
+    {p:"Píratar",v:3.4},{p:"Framsóknarflokkurinn",v:3.3},{p:"Flokkur fólksins",v:2.5},
+    {p:"Annað",v:2.0},{p:"Vinstri græn",v:0.0}
+  ],
+  // Fylgi Viðreisnar í Reykjavík eftir hópum (nýjasta mæling)
+  rvkAldur: [{g:"18–29",v:12},{g:"30–39",v:8},{g:"40–49",v:15},{g:"50–59",v:8},{g:"60–69",v:9},{g:"70+",v:4}],
+  rvkMenntun: [{g:"Grunnskólapróf",v:4},{g:"Framhaldsskólapróf",v:7},{g:"Háskólapróf",v:13}],
+
+  /* ---- Sóknarfæri: Viðreisn sem 2./3. val kjósenda annarra flokka ---- */
+  soknarfaeri: [
+    {p:"Samfylkingin",v2:68,v3:49,hi:true},
+    {p:"Sjálfstæðisflokkurinn",v2:20,v3:22},
+    {p:"Miðflokkurinn",v2:2,v3:12},
+    {p:"Píratar",v2:2,v3:10},
+    {p:"Framsóknarflokkurinn",v2:3,v3:4},
+    {p:"Flokkur fólksins",v2:3,v3:2},
+    {p:"Vinstri græn",v2:1,v3:1}
+  ],
+
+  /* ---- Forgangsmál kjósenda Viðreisnar eftir kjördæmum ---- */
+  malefniKjordaemi: [
+    {k:"Reykjavík", mal:["Umhverfis- og samgöngumál","Húsnæðismál","Börn og ungmenni"]},
+    {k:"Suðvesturkjördæmi", mal:["Húsnæðismál","Velferð fjölskyldunnar","Umhverfis- og samgöngumál"]},
+    {k:"Suðurkjördæmi", mal:["Börn og ungmenni","Fjármál sveitarfélaga","Velferð fjölskyldunnar"]},
+    {k:"Norðausturkjördæmi", mal:["Húsnæðismál","Velferð fjölskyldunnar","Atvinnumál"]},
+    {k:"Norðvesturkjördæmi", mal:["Velferð fjölskyldunnar","Fjármál heimilanna","Húsnæðismál"]}
+  ],
 
   /* ---- Kannanir eftir málefnum (umgjörð — fylltu inn jafnóðum) ---- */
   issues: [
@@ -290,13 +431,124 @@ const DATA = {
     ]
   },
 
-  /* ---- Þingmál / árangur ríkisstjórnar (Viðreisn í broddi fylkingar merkt sérstaklega) ---- */
-  bills: [
-    {year:"Sumar 2025", title:"Leiðrétting veiðigjalda", desc:"Frumvarp Hönnu Katrínar Friðriksson atvinnuvegaráðherra. Veiðigjald miðað við raunverulegt aflaverðmæti; hærra frítekjumark hlífir litlum og meðalstórum útgerðum. Áætluð tekjuaukning ríkissjóðs um 7,5 ma.kr.", tags:["Viðreisn-ráðherra","Auðlindamál"]},
-    {year:"Des. 2025", title:"Fjárlög 2026", desc:"Undir forystu Daða Más Kristóferssonar fjármálaráðherra. Halli helmingaður á fyrsta heila ári stjórnarinnar; fimm stýrivaxtalækkanir og lægsta verðbólga frá 2020 á tímabilinu. Ríkisskuldir lækkaðar um 7,5% af VLF.", tags:["Viðreisn-ráðherra","Ríkisfjármál"]},
-    {year:"1. júní 2026", title:"Nýtt kerfi í stað jafnlaunavottunar", desc:"Alþingi samþykkti einfaldara kerfi sem leysir jafnlaunavottun af hólmi. Stjórnarmál.", tags:["Ríkisstjórn"]},
-    {year:"2024–2026", title:"Efnahagsstöðugleiki", desc:"Áhersla stjórnarsáttmálans á lækkun vaxta og verðbólgu með styrkri stjórn ríkisfjármála — kjarnastef Viðreisnar í stjórnarsamstarfinu.", tags:["Ríkisstjórn","Efnahagsmál"]}
-  ],
+  /* ---- Þingmál: 156. löggjafarþing (2025) — samþykkt lög frá ráðuneytum Viðreisnar ---- */
+  thingmal156: {
+    thing:"156. löggjafarþing (2025)",
+    groups: [
+      { key:"fjr", title:"Fjármála- og efnahagsráðuneyti", sub:"Daði Már Kristófersson", items:[
+        {law:"10/2025", t:"Staðfesting ríkisreiknings 2023", n:"", url:"https://www.althingi.is/altext/156/s/0210.html"},
+        {law:"22/2025", t:"Ráðstöfun eignarhlutar ríkisins í Íslandsbanka hf.", n:"framkvæmd markaðssetts útboðs", url:"https://www.althingi.is/altext/156/s/0467.html"},
+        {law:"24/2025", t:"Fjáraukalög 2025", n:"", url:"https://www.althingi.is/altext/156/s/0627.html"},
+        {law:"27/2025", t:"Greiðslur yfir landamæri í evrum", n:"", url:"https://www.althingi.is/altext/156/s/0575.html"},
+        {law:"28/2025", t:"Rekstraraðilar sérhæfðra sjóða og verðbréfasjóðir", n:"stjórnvaldsfyrirmæli", url:"https://www.althingi.is/altext/156/s/0576.html"},
+        {law:"49/2025", t:"Opinber fjármál", n:"stöðugleikaregla o.fl.", url:"https://www.althingi.is/altext/156/s/0832.html"},
+        {law:"52/2025", t:"Fjáraukalög II 2025", n:"breytt skipan Stjórnarráðsins", url:"https://www.althingi.is/altext/156/s/0833.html"},
+        {law:"53/2025", t:"Fjáraukalög III 2025", n:"", url:"https://www.althingi.is/altext/156/s/0834.html"}
+      ]},
+      { key:"atv", title:"Atvinnuvegaráðuneyti", sub:"Hanna Katrín Friðriksson", items:[
+        {law:"55/2025", t:"Veiðigjald", n:"leiðrétting veiðigjalda; aflaverðmæti í reiknistofni — eitt helsta mál ríkisstjórnarinnar á fyrsta þingi hennar", url:"https://www.althingi.is/altext/156/s/0870.html"}
+      ]},
+      { key:"dom", title:"Dómsmálaráðuneyti", sub:"Þorbjörg Sigríður Gunnlaugsdóttir", items:[
+        {law:"35/2025", t:"Framsal sakamanna og önnur aðstoð í sakamálum", n:"einföldun málsmeðferðar", url:"https://www.althingi.is/altext/156/s/0670.html"},
+        {law:"36/2025", t:"Landamæri o.fl.", n:"farþegaupplýsingar fyrir lögreglu og tollyfirvöld", url:"https://www.althingi.is/altext/156/s/0671.html"}
+      ]},
+      { key:"utn", title:"Utanríkisráðuneyti", sub:"Þorgerður Katrín Gunnarsdóttir", items:[
+        {law:"51/2025", t:"Varnarmálalög", n:"netöryggissveit", url:"https://www.althingi.is/altext/156/s/0830.html"}
+      ]}
+    ]
+  },
+
+  /* ---- Þingmál: 157. löggjafarþing (2025–2026) ---- */
+  thingmal157: {
+    thing:"157. löggjafarþing (2025–2026)",
+    groups: [
+      { key:"mp", title:"Þingmannamál Viðreisnar", sub:"Þingmaður Viðreisnar 1. flutningsmaður", items:[
+        {nr:"88",d:"22.09.2025",t:"Skyldutrygging lífeyrisréttinda og starfsemi lífeyrissjóða",n:"sjálfskaparvíti",ty:"frv",by:"Sigmar Guðmundsson"},
+        {nr:"104",d:"23.09.2025",t:"Mannanöfn",n:"ættarnöfn o.fl.",ty:"frv",by:"Jón Gnarr"},
+        {nr:"262",d:"18.11.2025",t:"Virðisaukaskattur",n:"viðgerðir",ty:"frv",by:"Ingvar Þóroddsson"},
+        {nr:"479",d:"19.02.2026",t:"Áfengislög",n:"vefverslun með áfengi",ty:"frv",by:"Grímur Grímsson"},
+        {nr:"87",d:"18.09.2025",t:"Hjólaleið milli höfuðborgarsvæðisins og Suðurnesja",n:"",ty:"þál",by:"Pawel Bartoszek"},
+        {nr:"152",d:"06.10.2025",t:"Dreifing starfa",n:"",ty:"þál",by:"Eiríkur Björn Björgvinsson"},
+        {nr:"180",d:"14.10.2025",t:"Staðfesting Haag-samningsins um gagnkvæma innheimtu meðlags",n:"",ty:"þál",by:"Jón Gnarr"}
+      ] },
+      { key:"fjr", title:"Fjármála- og efnahagsráðuneyti", sub:"Daði Már Kristófersson", items:[
+        {nr:"1",d:"09.09.2025",t:"Fjárlög 2026",n:"",ty:"frv"},
+        {nr:"2",d:"09.09.2025",t:"Breyting á ýmsum lögum vegna fjárlaga 2026",n:"",ty:"frv"},
+        {nr:"99",d:"18.09.2025",t:"Stafrænn viðnámsþróttur fjármálamarkaðar",n:"",ty:"frv"},
+        {nr:"100",d:"18.09.2025",t:"Verðbréfun",n:"",ty:"frv"},
+        {nr:"101",d:"18.09.2025",t:"Starfstengdir eftirlaunasjóðir",n:"",ty:"frv"},
+        {nr:"144",d:"25.09.2025",t:"Kílómetragjald á ökutæki",n:"",ty:"frv"},
+        {nr:"146",d:"25.09.2025",t:"Staðfesting ríkisreiknings 2024",n:"",ty:"frv"},
+        {nr:"147",d:"25.09.2025",t:"Evrópskir langtímafjárfestingarsjóðir",n:"einföldun",ty:"frv"},
+        {nr:"148",d:"25.09.2025",t:"Skattar, tollar og gjöld",n:"aðgerðir gegn peningaþvætti, viðurlög o.fl.",ty:"frv"},
+        {nr:"173",d:"09.10.2025",t:"Tekjuskattur og staðgreiðsla opinberra gjalda",n:"erlendar fjárfestingar",ty:"frv"},
+        {nr:"190",d:"17.10.2025",t:"Fjármálafyrirtæki",n:"CRR III",ty:"frv"},
+        {nr:"228",d:"06.11.2025",t:"Markaðir fyrir sýndareignir",n:"",ty:"frv"},
+        {nr:"257",d:"14.11.2025",t:"Skattar, gjöld o.fl.",n:"tollar, leigutekjur o.fl.",ty:"frv"},
+        {nr:"264",d:"18.11.2025",t:"Aðgengi að vefsetrum og smáforritum opinberra aðila",n:"",ty:"frv"},
+        {nr:"296",d:"25.11.2025",t:"Stuðningur við nýsköpunarfyrirtæki",n:"framkvæmd",ty:"frv"},
+        {nr:"299",d:"28.11.2025",t:"Fjáraukalög IV 2025",n:"",ty:"frv"},
+        {nr:"513",d:"05.03.2026",t:"Þjónustuveitendur hópfjármögnunar fyrir fyrirtæki",n:"",ty:"frv"},
+        {nr:"535",d:"16.03.2026",t:"Innviðafélag",n:"",ty:"frv"},
+        {nr:"536",d:"16.03.2026",t:"Réttindi og skyldur starfsmanna ríkisins",n:"afnám áminningar o.fl.",ty:"frv"},
+        {nr:"564",d:"19.03.2026",t:"Ráðstöfun viðbótariðgjalds til séreignarsparnaðar inn á höfuðstól húsnæðislána",n:"varanleg heimild",ty:"frv"},
+        {nr:"567",d:"23.03.2026",t:"Skyldutrygging lífeyrisréttinda og starfsemi lífeyrissjóða",n:"fjárfestingarheimildir lífeyrissjóða",ty:"frv"},
+        {nr:"587",d:"26.03.2026",t:"Varfærniskröfur til verðbréfafyrirtækja",n:"",ty:"frv"},
+        {nr:"607",d:"11.04.2026",t:"Virðisaukaskattur og samkeppnislög",n:"skatthlutfall eldsneytis",ty:"frv"},
+        {nr:"632",d:"22.04.2026",t:"Laun þjóðkjörinna fulltrúa og æðstu embættismanna",n:"viðmið uppfærslu launa",ty:"frv"},
+        {nr:"577",d:"26.03.2026",t:"Fjármálaáætlun fyrir árin 2027–2031",n:"",ty:"þál"}
+      ] },
+      { key:"atv", title:"Atvinnuvegaráðuneyti", sub:"Hanna Katrín Friðriksson", items:[
+        {nr:"89",d:"17.09.2025",t:"Dýrasjúkdómar og varnir gegn þeim",n:"riðuveiki o.fl.",ty:"frv"},
+        {nr:"114",d:"18.09.2025",t:"Veitingastaðir, gististaðir og skemmtanahald",n:"skammtímaleiga, gagnaöflun og rekstrarleyfi",ty:"frv"},
+        {nr:"220",d:"31.10.2025",t:"Faggilding o.fl. og staðlar og Staðlaráð Íslands",n:"endurskoðun",ty:"frv"},
+        {nr:"234",d:"10.11.2025",t:"Markaðssetningarlög",n:"",ty:"frv"},
+        {nr:"235",d:"10.11.2025",t:"Afurðasjóður Grindavíkurbæjar",n:"framlenging",ty:"frv"},
+        {nr:"300",d:"28.11.2025",t:"Rýni á fjárfestingum erlendra aðila vegna þjóðaröryggis og allsherjarreglu",n:"",ty:"frv"},
+        {nr:"374",d:"18.12.2025",t:"Búvörulög",n:"framleiðendafélög",ty:"frv"},
+        {nr:"506",d:"02.03.2026",t:"Hafrannsóknastofnun",n:"hlutverk, ráðgjafarnefnd, forstjóri o.fl.",ty:"frv"},
+        {nr:"529",d:"16.03.2026",t:"Lagareldi",n:"",ty:"frv"},
+        {nr:"530",d:"16.03.2026",t:"Lax- og silungsveiði o.fl.",n:"bætt lagaumgjörð",ty:"frv"},
+        {nr:"556",d:"17.03.2026",t:"Ársreikningar",n:"stærðarhlutföll, endurskoðunarmörk, skilafrestur o.fl.",ty:"frv"},
+        {nr:"568",d:"23.03.2026",t:"Stofnun atvinnuveganna",n:"",ty:"frv"},
+        {nr:"604",d:"01.04.2026",t:"Hlutafélög og einkahlutafélög",n:"EES-innleiðing",ty:"frv"},
+        {nr:"115",d:"18.09.2025",t:"Stefna í neytendamálum til ársins 2030",n:"",ty:"þál"}
+      ] },
+      { key:"dom", title:"Dómsmálaráðuneyti", sub:"Þorbjörg Sigríður Gunnlaugsdóttir", items:[
+        {nr:"103",d:"18.09.2025",t:"Meðferð sakamála o.fl.",n:"upptaka fjárhagslegs ágóða af brotum o.fl.",ty:"frv"},
+        {nr:"111",d:"18.09.2025",t:"Sýslumaður",n:"",ty:"frv"},
+        {nr:"112",d:"18.09.2025",t:"Útlendingar",n:"afturköllun alþjóðlegrar verndar",ty:"frv"},
+        {nr:"113",d:"18.09.2025",t:"Kirkjugarðar, greftrun og líkbrennsla",n:"rekstur líkhúsa",ty:"frv"},
+        {nr:"230",d:"06.11.2025",t:"Brottfararstöð",n:"",ty:"frv"},
+        {nr:"231",d:"06.11.2025",t:"Stafræn og rafræn málsmeðferð hjá sýslumönnum og dómstólum",n:"",ty:"frv"},
+        {nr:"287",d:"21.11.2025",t:"Almannavarnir",n:"",ty:"frv"},
+        {nr:"297",d:"25.11.2025",t:"Jöfn staða og jafn réttur kynjanna",n:"skýrslugjöf um kynbundinn launamun",ty:"frv"},
+        {nr:"298",d:"25.11.2025",t:"Nálgunarbann og brottvísun af heimili",n:"rafrænt eftirlit o.fl.",ty:"frv"},
+        {nr:"313",d:"01.12.2025",t:"Almenn hegningarlög",n:"öryggisráðstafanir",ty:"frv"},
+        {nr:"316",d:"01.12.2025",t:"Útlendingar og atvinnuréttindi útlendinga",n:"útgáfa dvalar- og atvinnuleyfa",ty:"frv"},
+        {nr:"396",d:"27.01.2026",t:"Schengen-upplýsingakerfið á Íslandi",n:"heimildir til skráningar brotamanna",ty:"frv"},
+        {nr:"400",d:"29.01.2026",t:"Kosningalög, sveitarstjórnarlög og lögheimili og aðsetur",n:"sveitarstjórnarkosningar í Grindavíkurbæ",ty:"frv"},
+        {nr:"514",d:"05.03.2026",t:"Fullnusta refsinga",n:"brottvísun og afplánun erlendra fanga",ty:"frv"},
+        {nr:"594",d:"01.04.2026",t:"Útlendingar og lögreglulög",n:"verndarsamkomulag Evrópusambandsins",ty:"frv"},
+        {nr:"603",d:"01.04.2026",t:"Útlendingar",n:"tímabundin vernd vegna fjöldaflótta o.fl.",ty:"frv"},
+        {nr:"90",d:"18.09.2025",t:"Framkvæmdaáætlun í kynjajafnréttismálum fyrir árin 2026–2029",n:"",ty:"þál"}
+      ] },
+      { key:"utn", title:"Utanríkisráðuneyti", sub:"Þorgerður Katrín Gunnarsdóttir", items:[
+        {nr:"3",d:"10.09.2025",t:"Evrópska efnahagssvæðið",n:"bókun 35",ty:"frv"},
+        {nr:"79",d:"15.09.2025",t:"Vegabréfsáritanir",n:"",ty:"frv"},
+        {nr:"210",d:"21.10.2025",t:"Verndun og sjálfbær nýting líffræðilegrar fjölbreytni hafsins utan lögsögu ríkja",n:"",ty:"frv"},
+        {nr:"315",d:"01.12.2025",t:"Landhelgi, aðlægt belti, efnahagslögsaga og landgrunn",n:"mörk landgrunns",ty:"frv"},
+        {nr:"156",d:"06.10.2025",t:"Fríverslunarsamningur milli EFTA-ríkjanna og Úkraínu o.fl.",n:"",ty:"þál"},
+        {nr:"215",d:"23.10.2025",t:"Stefna í varnar- og öryggismálum",n:"",ty:"þál"},
+        {nr:"218",d:"31.10.2025",t:"Staðfesting ákvarðana sameiginlegu EES-nefndarinnar (IX. viðauki)",n:"fjármálaþjónusta",ty:"þál"},
+        {nr:"219",d:"31.10.2025",t:"Fullgilding samningsins um loftslagsbreytingar, viðskipti og sjálfbærni",n:"",ty:"þál"},
+        {nr:"444",d:"16.02.2026",t:"Fullgilding fríverslunarsamnings milli EFTA-ríkjanna og Mercosur",n:"",ty:"þál"},
+        {nr:"496",d:"26.02.2026",t:"Breyting á XVII. viðauka við EES-samninginn o.fl.",n:"hugverkaréttindi o.fl.",ty:"þál"},
+        {nr:"516",d:"06.03.2026",t:"Þjóðaratkvæðagreiðsla um framhald viðræðna um aðild Íslands að Evrópusambandinu",n:"",ty:"þál"},
+        {nr:"602",d:"01.04.2026",t:"Breyting á IX. viðauka við EES-samninginn o.fl.",n:"fjármálaþjónusta o.fl.",ty:"þál"}
+      ] }
+    ]
+  },
 
   /* ---- Sveitarstjórnir (kosningar 16. maí 2026) ---- */
   munis: [
@@ -460,6 +712,7 @@ const DATA = {
 const TABS = [
   {id:"yfirlit", label:"Yfirlit"},
   {id:"fylgi", label:"Fylgi"},
+  {id:"sveitarfylgi", label:"Sveitarfylgi"},
   {id:"rikisstjorn", label:"Ríkisstjórn"},
   {id:"thingflokkur", label:"Þingflokkur"},
   {id:"thingmal", label:"Þingmál"},
@@ -481,13 +734,45 @@ function seatsDots(on, total){
   return h+'</span>';
 }
 
+function lineChart(S){
+  const pts = S.points;
+  const W=680,H=300,padL=40,padR=18,padT=26,padB=50;
+  const plotW=W-padL-padR, plotH=H-padT-padB, yMin=S.yMin, yMax=S.yMax, step=S.yStep||2;
+  const x = i => padL + (pts.length<2?plotW/2:(i/(pts.length-1))*plotW);
+  const y = v => padT + (1-(v-yMin)/(yMax-yMin))*plotH;
+  let grid='';
+  for(let g=yMin; g<=yMax; g+=step){
+    const gy=y(g).toFixed(1);
+    grid += `<line x1="${padL}" y1="${gy}" x2="${W-padR}" y2="${gy}" class="ch-grid"/><text x="${padL-8}" y="${(+gy+4).toFixed(1)}" class="ch-ylab">${g}%</text>`;
+  }
+  const lp = pts.map((p,i)=>`${x(i).toFixed(1)},${y(p.v).toFixed(1)}`);
+  const linePath='M'+lp.join(' L');
+  const areaPath=`M${x(0).toFixed(1)},${y(yMin).toFixed(1)} L`+lp.join(' L')+` L${x(pts.length-1).toFixed(1)},${y(yMin).toFixed(1)} Z`;
+  const many = pts.length>10;
+  const labelEvery = many ? Math.ceil(pts.length/8) : 1;
+  let dots='';
+  pts.forEach((p,i)=>{
+    const px=x(i).toFixed(1), py=y(p.v).toFixed(1);
+    const isLast=i===pts.length-1;
+    const showLabel=(i%labelEvery===0)||isLast;
+    const showVal=!many||isLast||p.e;
+    if(showVal) dots+=`<text x="${px}" y="${(+py-12).toFixed(1)}" class="ch-val">${p.v.toString().replace('.',',')}</text>`;
+    dots += p.e
+      ? `<rect x="${(+px-5).toFixed(1)}" y="${(+py-5).toFixed(1)}" width="10" height="10" class="ch-pt ch-pt-e" transform="rotate(45 ${px} ${py})"/>`
+      : `<circle cx="${px}" cy="${py}" r="${many?3.2:5}" class="ch-pt"/>`;
+    if(showLabel) dots+=`<text x="${px}" y="${H-padB+18}" class="ch-xlab">${p.t}</text>`;
+    if(showLabel && !many && p.src) dots+=`<text x="${px}" y="${H-padB+32}" class="ch-xsub">${p.e?'Kosningar':p.src.replace('Gallup þjóðarpúls','Gallup')}</text>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" class="ch" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${S.label}">${grid}<path d="${areaPath}" class="ch-area"/><path d="${linePath}" class="ch-line"/>${dots}</svg>`;
+}
+
 function render(){
   // tabs
   document.getElementById('tabbar').innerHTML = TABS.map((t,i)=>
     `<button class="tab ${i===0?'active':''}" data-tab="${t.id}">${t.label}</button>`).join('');
 
   const m = document.getElementById('main');
-  m.innerHTML = panelYfirlit()+panelFylgi()+panelRikisstjorn()+panelThingflokkur()+panelThingmal()+panelSveitir()+panelHeimildir();
+  m.innerHTML = panelYfirlit()+panelFylgi()+panelSveitarfylgi()+panelRikisstjorn()+panelThingflokkur()+panelThingmal()+panelSveitir()+panelHeimildir();
 
   document.querySelectorAll('.tab').forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -496,7 +781,7 @@ function render(){
       btn.classList.add('active');
       document.getElementById('p-'+btn.dataset.tab).classList.add('active');
       window.scrollTo({top:0,behavior:'smooth'});
-      if(btn.dataset.tab==='fylgi') animateBars();
+      if(btn.dataset.tab==='fylgi'||btn.dataset.tab==='sveitarfylgi') animateBars();
     });
   });
   animateBars();
@@ -511,7 +796,7 @@ function panelYfirlit(){
     <h2 class="sec">Viðreisn í lykilstöðu — landsmál og sveitarstjórnir</h2>
     <p class="lede">Stutt yfirlit yfir fylgi, ráðherra, þingmál og stöðu flokksins í sveitarstjórnum eftir kosningarnar 16. maí. Smelltu á flipana að ofan fyrir nánari sundurliðun.</p>
     <div class="grid gstat">
-      <div class="card stat"><div class="n">${DATA.national.headline}</div><div class="lbl">Þingfylgi á landsvísu</div><div class="meta">Prósent, feb. 2026 · 3. stærsti flokkur</div></div>
+      <div class="card stat"><div class="n">${DATA.national.headline}</div><div class="lbl">Þingfylgi á landsvísu</div><div class="meta">Gallup þjóðarpúls, maí 2026 · úr 15,8% kjörfylgi</div></div>
       <div class="card stat"><div class="n">11</div><div class="lbl">Þingmenn á Alþingi</div><div class="meta">Þingflokksformaður: Sigmar Guðmundsson</div></div>
       <div class="card stat"><div class="n">4</div><div class="lbl">Ráðherrar í ríkisstjórn</div><div class="meta">Af 11 · frá 21. des. 2024</div></div>
       <div class="card stat"><div class="n">${totalSeats}</div><div class="lbl">Kjörnir fulltrúar í sveitarstjórnum</div><div class="meta">Í öllum 8 sveitarfélögunum</div></div>
@@ -524,22 +809,9 @@ function panelYfirlit(){
   </section>`;
 }
 
-/* ---- Fylgi ---- */
+/* ---- Fylgi (þjóðfylgi) ---- */
 function panelFylgi(){
   const n = DATA.national;
-  const maxSeats = Math.max(...n.seatsByMuni.map(s=>s.seats||0),3);
-  const bars = n.seatsByMuni.map(s=>{
-    const isQ = s.q;
-    const h = isQ?28:((s.seats/maxSeats)*100);
-    return `<div class="bar-col">
-      <div class="bar ${isQ?'q':''}" data-h="${h}" style="height:0">
-        <span class="v">${isQ?'?':s.seats}</span>
-      </div>
-      <div class="bar-lbl">${s.name}</div>
-      <div class="bar-sub">af ${s.total}</div>
-    </div>`;
-  }).join('');
-
   const issues = DATA.issues.map(i=>`
     <div class="bill" style="border-top:1px solid var(--line)">
       <div class="yr" style="flex:0 0 0"></div>
@@ -550,26 +822,116 @@ function panelFylgi(){
       </div>
     </div>`).join('');
 
+  const sfMax = 70;
+  const sokn = DATA.soknarfaeri.map(s=>`
+    <div class="sokn-row ${s.hi?'hi':''}">
+      <div class="sokn-p">${s.p}</div>
+      <div class="sokn-metric"><span class="sokn-tag">2. val</span><div class="sokn-track"><div class="sokn-fill v2" style="width:${(s.v2/sfMax*100).toFixed(1)}%"></div></div><span class="sokn-val">${s.v2}%</span></div>
+      <div class="sokn-metric"><span class="sokn-tag">3. val</span><div class="sokn-track"><div class="sokn-fill v3" style="width:${(s.v3/sfMax*100).toFixed(1)}%"></div></div><span class="sokn-val">${s.v3}%</span></div>
+    </div>`).join('');
+
+  const mal = DATA.malefniKjordaemi.map(m=>`
+    <div class="mal-card">
+      <div class="mal-k">${m.k}</div>
+      <ol class="mal-list">${m.mal.map(x=>`<li>${x}</li>`).join('')}</ol>
+    </div>`).join('');
+
   return `<section class="panel" id="p-fylgi">
-    <div class="eyebrow">Fylgiskannanir</div>
-    <h2 class="sec">Fylgi á landsvísu og í sveitarfélögum</h2>
+    <div class="eyebrow">Þjóðarfylgi</div>
+    <h2 class="sec">Fylgi Viðreisnar á landsvísu</h2>
     <p class="lede">${n.context}</p>
-    <div class="grid g3" style="margin-bottom:30px">
+    <div class="grid g3" style="margin-bottom:26px">
       <div class="card stat" style="grid-column:span 1">
         <div class="n">${n.headline}</div>
         <div class="lbl">${n.headlineLabel}</div>
         <div class="meta">${n.headlineMeta}</div>
       </div>
       <div class="card" style="grid-column:span 2">
-        <div class="eyebrow" style="margin-bottom:4px">Kjörnir fulltrúar Viðreisnar · sveitarstjórnarkosningar 16. maí 2026</div>
-        <div class="bars">${bars}</div>
-        <p class="bar-sub" style="margin-top:12px">Skástrikaðar súlur = úrslit ekki staðfest í þessu mælaborði enn.</p>
+        <div class="eyebrow" style="margin-bottom:8px">${DATA.fylgiSaga.label}</div>
+        ${lineChart(DATA.fylgiSaga)}
+        <p class="bar-sub" style="margin-top:8px">Ferningur = kjörfylgi (alþingiskosningar nóv. 2024). Hringir = skoðanakannanir, með heimild undir hverjum punkti. Blanda af Gallup þjóðarpúlsi og Prósent.</p>
       </div>
     </div>
+    <div class="eyebrow">Sóknarfæri</div>
+    <h2 class="sec" style="font-size:1.4rem">Hvert getum við sótt fylgi?</h2>
+    <p class="lede">Hlutfall kjósenda hvers flokks sem nefnir Viðreisn sem 2. eða 3. val. Langstærsta sóknarfærið er meðal kjósenda Samfylkingarinnar — 68% þeirra setja Viðreisn í annað sæti.</p>
+    <div class="card" style="margin-bottom:30px">${sokn}</div>
+    <div class="eyebrow">Forgangsmál</div>
+    <h2 class="sec" style="font-size:1.4rem">Hvað brennur á kjósendum Viðreisnar — eftir kjördæmum</h2>
+    <p class="lede">Þrjú efstu málefni kjósenda Viðreisnar í hverju kjördæmi. Húsnæðis- og velferðarmál eru rauður þráður; í Reykjavík vega umhverfis- og samgöngumál þyngst.</p>
+    <div class="mal-grid" style="margin-bottom:30px">${mal}</div>
     <div class="eyebrow">Kannanir eftir málefnum</div>
     <h2 class="sec" style="font-size:1.4rem">Málefnamælingar — umgjörð til útfyllingar</h2>
     <p class="lede">Hér er rammi fyrir reglulegar málefnakannanir. Fylltu inn nýjustu tölur jafnóðum (Maskína, Gallup þjóðarpúls, Prósent).</p>
     <div class="card">${issues}</div>
+    <div class="disclaimer" style="margin-top:18px">Gallup birtir þjóðarpúlsinn í gagnvirku mælaborði (gogn.gallup.is) sem ekki er hægt að flytja sjálfvirkt inn. Tímaröðin hér byggir á birtum niðurstöðum þjóðarpúls og Prósent. Nýjar mælingar má skrá jafnóðum í <code>fylgiSaga.points</code>.</div>
+  </section>`;
+}
+
+/* ---- Sveitarfylgi (kosningaúrslit 16. maí 2026) ---- */
+function panelSveitarfylgi(){
+  const rows = DATA.sveitarUrslit;
+  const maxSeats = Math.max(...rows.map(r=>r.seats||0),3);
+  const bars = rows.map(r=>{
+    const h=(r.seats/maxSeats)*100;
+    return `<div class="bar-col"><div class="bar" data-h="${h}" style="height:0"><span class="v">${r.seats}</span></div><div class="bar-lbl">${r.name}</div><div class="bar-sub">af ${r.total}</div></div>`;
+  }).join('');
+  const trs = rows.map(r=>{
+    const sm = statusMeta[r.status];
+    const pct = r.pct!=null ? r.pct.toString().replace('.',',')+'%' : '—';
+    return `<tr>
+      <td class="sf-name">${r.name}</td>
+      <td class="sf-pct">${pct}</td>
+      <td>${r.seats}/${r.total}</td>
+      <td><span class="badge ${sm.cls}">${sm.txt}</span></td>
+      <td class="sf-note">${r.note}</td>
+    </tr>`;
+  }).join('');
+  const totalSeats = rows.reduce((a,b)=>a+(b.seats||0),0);
+  const leadCount = rows.filter(r=>r.status==='maj').length;
+  const snapMax = Math.max(...DATA.rvkSnapshot.map(s=>s.v));
+  const snap = DATA.rvkSnapshot.map(s=>`
+    <div class="snap-row ${s.hi?'hi':''}">
+      <div class="snap-p">${s.p}</div>
+      <div class="snap-track"><div class="snap-fill" style="width:${(s.v/snapMax*100).toFixed(1)}%"></div></div>
+      <div class="snap-val">${s.v.toString().replace('.',',')}%</div>
+    </div>`).join('');
+  const xt = arr => arr.map(a=>`<div class="xt"><div class="xt-g">${a.g}</div><div class="xt-track"><div class="xt-fill" style="width:${(a.v/16*100).toFixed(0)}%"></div></div><div class="xt-v">${a.v}%</div></div>`).join('');
+  return `<section class="panel" id="p-sveitarfylgi">
+    <div class="eyebrow">Sveitarstjórnarkosningar · 16. maí 2026</div>
+    <h2 class="sec">Úrslit Viðreisnar í sveitarfélögunum</h2>
+    <p class="lede">Þar sem kannanir eftir kosningarnar liggja ekki fyrir er stuðst við kosningaúrslitin sjálf. Viðreisn fékk ${totalSeats} kjörna fulltrúa í öllum átta sveitarfélögunum og fer með forystu (meirihluta eða bæjarstjóra) í ${leadCount} þeirra.</p>
+    <div class="card" style="margin-bottom:24px">
+      <div class="eyebrow" style="margin-bottom:4px">Kjörnir fulltrúar eftir sveitarfélagi</div>
+      <div class="bars">${bars}</div>
+    </div>
+    <div class="card">
+      <div style="overflow-x:auto"><table class="sf-table">
+        <thead><tr><th>Sveitarfélag</th><th>Fylgi</th><th>Fulltrúar</th><th>Staða</th><th>Athugasemd</th></tr></thead>
+        <tbody>${trs}</tbody>
+      </table></div>
+    </div>
+    <div class="eyebrow" style="margin-top:34px">Reykjavík — þróun fylgis (kannanir)</div>
+    <h2 class="sec" style="font-size:1.4rem">Borgarfylgi Viðreisnar</h2>
+    <p class="lede">Mánaðarleg rakning fylgis í borginni fyrir kosningar (Maskína). Nýjasta mæling í apríl 2026 var 9,5% — fimmti stærsti flokkurinn. Þetta eru kannanir, ekki kosningaúrslitin sjálf.</p>
+    <div class="card" style="margin-bottom:24px">
+      <div class="eyebrow" style="margin-bottom:8px">${DATA.rvkSaga.label}</div>
+      ${lineChart(DATA.rvkSaga)}
+    </div>
+    <div class="grid g2" style="margin-bottom:8px">
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:12px">Nýjasta mæling — öll framboð í Reykjavík</div>
+        ${snap}
+      </div>
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:12px">Fylgi Viðreisnar eftir aldri</div>
+        ${xt(DATA.rvkAldur)}
+        <div class="eyebrow" style="margin:16px 0 12px">Eftir menntun</div>
+        ${xt(DATA.rvkMenntun)}
+        <p class="bar-sub" style="margin-top:12px">Sterkast hjá 40–49 ára (15%) og háskólamenntuðum (13%). Af kjósendum Viðreisnar 2022 kjósa 47% flokkinn enn.</p>
+      </div>
+    </div>
+    <div class="disclaimer" style="margin-top:18px">Sætafjöldi er staðfestur fyrir öll sveitarfélögin. Fylgishlutfall (%) er staðfest fyrir Hafnarfjörð (14,3%, +5,1 prósentustig) og Múlaþing (11,2%); fyrir hin sveitarfélögin má bæta því inn úr úrslitum mbl.is/RÚV í <code>sveitarUrslit</code>. Reykjavíkurferillinn er úr borgarfylgiskönnunum (Maskína), nýjasta mæling apríl 2026.</div>
   </section>`;
 }
 
@@ -616,6 +978,11 @@ function panelThingflokkur(){
     <div class="eyebrow">Þingflokkur Viðreisnar</div>
     <h2 class="sec">11 þingmenn á Alþingi</h2>
     <p class="lede">Formaður þingflokks er ${t.formadur} og varaformaður ${t.varaformadur}. Hér eru þingmenn flokksins, kjördæmi þeirra og seta í fastanefndum Alþingis. Ráðherrar sitja ekki í fastanefndum.</p>
+    <div class="grid gstat" style="margin-bottom:28px">
+      <div class="card stat"><div class="n">15,8%</div><div class="lbl">Kjörfylgi 2024</div><div class="meta">Alþingiskosningar 30. nóv. 2024</div></div>
+      <div class="card stat"><div class="n">11</div><div class="lbl">Þingmenn kjörnir</div><div class="meta">Úr 5 árið 2021 — bætti við sig 6</div></div>
+      <div class="card stat"><div class="n accent">3.</div><div class="lbl">Stærsti flokkur landsins</div><div class="meta">Á eftir Samfylkingu og Sjálfstæðisflokki</div></div>
+    </div>
     <div class="grid g2">${cards}</div>
     <div class="disclaimer" style="margin-top:22px">Daði Már Kristófersson, fjármála- og efnahagsráðherra, er ráðherra utan þings og situr því ekki á Alþingi sem þingmaður. Nefndaskipan getur breyst á kjörtímabilinu; staðfestu á althingi.is.</div>
   </section>`;
@@ -623,21 +990,59 @@ function panelThingflokkur(){
 
 /* ---- Þingmál ---- */
 function panelThingmal(){
-  const list = DATA.bills.map(b=>{
-    const tags = b.tags.map(t=>{
-      const c = t.includes('Viðreisn')?'b-jun':'b-gov';
-      return `<span class="badge ${c}">${t}</span>`;
+  const T = DATA.thingmal157;
+  const T6 = DATA.thingmal156;
+  const ferill = (nr,thing=157) => `https://www.althingi.is/thingstorf/thingmalalistar-eftir-thingum/ferill/${thing}/${nr}/?ltg=${thing}&mnr=${nr}`;
+  const tyLabel = ty => ty==='frv' ? 'Frumvarp' : 'Þingsályktun';
+  const groups = T.groups.map(g=>{
+    const rows = g.items.map(it=>{
+      const note = it.n ? ` <span class="tm-note">(${it.n})</span>` : '';
+      const by = it.by ? `<span class="tm-by">${it.by}</span>` : '';
+      const cls = it.ty==='frv' ? 'frv' : 'thal';
+      return `<a class="tm-item" href="${ferill(it.nr)}" target="_blank" rel="noopener">
+        <span class="tm-type tm-${cls}">${tyLabel(it.ty)}</span>
+        <span class="tm-main"><span class="tm-title">${it.t}</span>${note}${by}</span>
+        <span class="tm-meta">nr. ${it.nr} · ${it.d}</span>
+      </a>`;
     }).join('');
-    return `<div class="bill">
-      <div class="yr">${b.year}</div>
-      <div><h3>${b.title}</h3><p>${b.desc}</p><div class="tags">${tags}</div></div>
+    return `<div class="tm-group">
+      <div class="tm-ghead"><h3>${g.title}</h3><span class="tm-count">${g.items.length} mál</span></div>
+      <div class="tm-gsub">${g.sub}</div>
+      <div class="tm-list">${rows}</div>
     </div>`;
   }).join('');
+  const total = T.groups.reduce((s,g)=>s+g.items.length,0);
+
+  // 156. þing — samþykkt lög
+  const groups6 = T6.groups.map(g=>{
+    const rows = g.items.map(it=>{
+      const note = it.n ? ` <span class="tm-note">(${it.n})</span>` : '';
+      return `<a class="tm-item" href="${it.url}" target="_blank" rel="noopener">
+        <span class="tm-type tm-log">Lög ${it.law}</span>
+        <span class="tm-main"><span class="tm-title">${it.t}</span>${note}</span>
+        <span class="tm-meta">samþykkt 2025</span>
+      </a>`;
+    }).join('');
+    return `<div class="tm-group">
+      <div class="tm-ghead"><h3>${g.title}</h3><span class="tm-count">${g.items.length} lög</span></div>
+      <div class="tm-gsub">${g.sub}</div>
+      <div class="tm-list">${rows}</div>
+    </div>`;
+  }).join('');
+  const total6 = T6.groups.reduce((s,g)=>s+g.items.length,0);
+
   return `<section class="panel" id="p-thingmal">
-    <div class="eyebrow">Mál sem náðu fram að ganga</div>
-    <h2 class="sec">Árangur þingflokks og ráðherra Viðreisnar</h2>
-    <p class="lede">Helstu mál ríkisstjórnarinnar þar sem Viðreisn kom að, með áherslu á mál undir forystu ráðherra flokksins. Bættu við einstökum þingmálum þingflokksins eftir þörfum.</p>
-    <div class="card">${list}</div>
+    <div class="eyebrow">Þingmál Viðreisnar á Alþingi</div>
+    <h2 class="sec">Frumvörp og tillögur · ${T.thing}</h2>
+    <p class="lede">${total} þingmál þar sem þingmaður Viðreisnar er 1. flutningsmaður eða málið kemur frá ráðuneyti undir stjórn ráðherra Viðreisnar. Stjórnarfrumvörp endurspegla stefnu ríkisstjórnarinnar í heild en eru lögð fram af viðkomandi ráðherra. Smelltu á mál til að opna feril þess á althingi.is.</p>
+    ${groups}
+    <div class="disclaimer" style="margin-top:18px">Byggt á málalistum 157. löggjafarþings á althingi.is (lagafrumvörp og þingsályktunartillögur). Listinn nær til mála sem fram voru komin á þinginu og uppfærist ekki sjálfkrafa.</div>
+
+    <div class="tm-thingsep"></div>
+    <h2 class="sec" style="margin-top:30px">Samþykkt lög · ${T6.thing}</h2>
+    <p class="lede">${total6} lög frá ráðuneytum Viðreisnar sem náðu fram að ganga á fyrsta þingi ríkisstjórnarinnar. Hér eru aðeins talin mál sem urðu að lögum. Smelltu til að opna lagatextann á althingi.is.</p>
+    ${groups6}
+    <div class="disclaimer" style="margin-top:18px">Byggt á yfirliti yfir samþykkt lög á 156. þingi (althingi.is). Sú síða tilgreinir ekki flutningsmann; flokkun eftir ráðuneyti byggist á efnissviði málanna. Veiðigjaldið (55/2025) og varnarmálalögin (51/2025) eru staðfest sem stjórnarfrumvörp viðkomandi ráðherra Viðreisnar.</div>
   </section>`;
 }
 
