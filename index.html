@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viðreisn · Fylgis- og árangursmælaborð</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF6EE;
+    --paper-2:#F4ECE0;
+    --ink:#211B14;
+    --ink-soft:#5B5246;
+    --line:#E3D8C7;
+    --orange:#F26B1D;          /* Viðreisn-appelsínugulur */
+    --orange-deep:#C9530F;
+    --orange-soft:#FBE3CF;
+    --teal:#2E6E6A;
+    --good:#3C7A4E;
+    --warn:#B87514;
+    --opp:#8A4B2A;
+    --shadow:0 1px 2px rgba(33,27,20,.05),0 8px 24px rgba(33,27,20,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Hanken Grotesk',system-ui,sans-serif;
+    background:
+      radial-gradient(1200px 600px at 100% -10%, rgba(242,107,29,.07), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(46,110,106,.06), transparent 55%),
+      var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* ---------- Header ---------- */
+  header.top{
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(251,246,238,.9), rgba(251,246,238,.6));
+    backdrop-filter:blur(6px);
+    position:sticky;top:0;z-index:50;
+  }
+  .top-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 24px;max-width:1180px;margin:0 auto;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand .dot{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 32% 28%, #ff8a3c, var(--orange) 60%, var(--orange-deep));box-shadow:0 4px 14px rgba(242,107,29,.4)}
+  .brand h1{font-family:'Fraunces',serif;font-weight:600;font-size:1.28rem;letter-spacing:-.01em;line-height:1.05}
+  .brand .sub{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .updated{font-size:.78rem;color:var(--ink-soft);text-align:right}
+  .updated b{color:var(--ink);font-weight:600}
+  .btn{font-family:inherit;font-size:.78rem;font-weight:600;border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer;transition:.18s}
+  .btn:hover{border-color:var(--orange);color:var(--orange-deep)}
+
+  /* ---------- Nav ---------- */
+  nav.tabs{position:sticky;top:69px;z-index:40;background:rgba(251,246,238,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+  .tabs-inner{display:flex;gap:4px;max-width:1180px;margin:0 auto;padding:0 16px;overflow-x:auto}
+  .tab{font-family:inherit;font-size:.86rem;font-weight:600;color:var(--ink-soft);background:none;border:none;border-bottom:2px solid transparent;padding:14px 14px;cursor:pointer;white-space:nowrap;transition:.15s}
+  .tab:hover{color:var(--ink)}
+  .tab.active{color:var(--orange-deep);border-bottom-color:var(--orange)}
+
+  /* ---------- Sections ---------- */
+  section.panel{display:none;padding:38px 0 60px;animation:fade .4s ease}
+  section.panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange-deep);font-weight:700;margin-bottom:8px}
+  h2.sec{font-family:'Fraunces',serif;font-weight:600;font-size:1.9rem;letter-spacing:-.02em;margin-bottom:6px}
+  .lede{color:var(--ink-soft);max-width:62ch;margin-bottom:26px}
+
+  /* ---------- Cards / grid ---------- */
+  .grid{display:grid;gap:18px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:860px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+  .card.flush{padding:0;overflow:hidden}
+
+  .stat{display:flex;flex-direction:column;gap:2px}
+  .stat .n{font-family:'Fraunces',serif;font-size:2.5rem;font-weight:600;line-height:1;letter-spacing:-.02em}
+  .stat .n small{font-size:1.1rem;color:var(--ink-soft);font-weight:500}
+  .stat .lbl{font-size:.82rem;color:var(--ink-soft);font-weight:500}
+  .stat .meta{font-size:.72rem;color:var(--ink-soft);margin-top:8px;border-top:1px dashed var(--line);padding-top:8px}
+  .accent{color:var(--orange-deep)}
+
+  /* badges */
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+  .b-maj{background:#E7F0E7;color:var(--good)}
+  .b-jun{background:var(--orange-soft);color:var(--orange-deep)}
+  .b-opp{background:#F3E6DC;color:var(--opp)}
+  .b-todo{background:#EFEFEA;color:var(--ink-soft);border:1px dashed var(--line)}
+  .b-gov{background:#E4EEED;color:var(--teal)}
+
+  /* minister cards */
+  .min{display:flex;gap:16px;align-items:flex-start}
+  .min .av{width:46px;height:46px;border-radius:12px;flex:0 0 46px;display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:600;color:#fff;font-size:1.1rem;background:linear-gradient(140deg,var(--orange),var(--orange-deep))}
+  .min h3{font-size:1.02rem;font-weight:700;letter-spacing:-.01em}
+  .min .role{color:var(--orange-deep);font-weight:600;font-size:.86rem;margin-bottom:4px}
+  .min p{font-size:.84rem;color:var(--ink-soft)}
+
+  /* bill list */
+  .bill{display:flex;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+  .bill:first-child{border-top:none}
+  .bill .yr{font-family:'Fraunces',serif;font-weight:600;color:var(--orange-deep);font-size:.95rem;flex:0 0 86px}
+  .bill h3{font-size:1.02rem;font-weight:700;margin-bottom:4px;letter-spacing:-.01em}
+  .bill p{font-size:.86rem;color:var(--ink-soft)}
+  .bill .tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}
+
+  /* municipality table */
+  .muni{border-top:1px solid var(--line);padding:18px 0}
+  .muni:first-child{border-top:none}
+  .muni-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .muni-head h3{font-family:'Fraunces',serif;font-size:1.18rem;font-weight:600;letter-spacing:-.01em}
+  .muni-meta{display:flex;gap:24px;flex-wrap:wrap;margin-top:10px;font-size:.85rem}
+  .muni-meta div span{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:1px}
+  .muni-meta div b{font-weight:600}
+  .seats{display:inline-flex;gap:3px;vertical-align:middle;margin-left:6px}
+  .seat{width:9px;height:14px;border-radius:2px;background:var(--line)}
+  .seat.on{background:var(--orange)}
+  .note{font-size:.85rem;color:var(--ink-soft);margin-top:10px;background:var(--paper-2);border-radius:10px;padding:10px 12px}
+  .aherslur{margin-top:12px;border-left:3px solid var(--orange);background:linear-gradient(135deg,var(--orange-soft),#fff);border-radius:0 12px 12px 0;padding:14px 16px}
+  .aherslur .ah-title{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-deep);font-weight:700;margin-bottom:8px}
+  .aherslur ul{margin:0;padding-left:18px}
+  .aherslur li{font-size:.86rem;margin-bottom:5px}
+  .aherslur li:last-child{margin-bottom:0}
+
+  /* chart */
+  .bars{display:flex;align-items:flex-end;gap:24px;height:230px;padding:14px 6px 0;border-bottom:2px solid var(--ink)}
+  .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+  .bar{width:62%;max-width:64px;border-radius:8px 8px 0 0;background:linear-gradient(180deg,var(--orange),var(--orange-deep));position:relative;transition:height 1s cubic-bezier(.2,.8,.2,1)}
+  .bar .v{position:absolute;top:-26px;left:50%;transform:translateX(-50%);font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem}
+  .bar.q{background:repeating-linear-gradient(45deg,var(--line),var(--line) 6px,#ece2d2 6px,#ece2d2 12px)}
+  .bar.q .v{color:var(--ink-soft)}
+  .bar-lbl{margin-top:10px;font-size:.8rem;font-weight:600;text-align:center}
+  .bar-sub{font-size:.7rem;color:var(--ink-soft)}
+
+  .callout{background:linear-gradient(135deg,var(--orange-soft),#fff);border:1px solid var(--orange-soft);border-radius:16px;padding:20px 22px;margin:8px 0 26px}
+  .callout h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;margin-bottom:4px}
+  .callout p{font-size:.88rem;color:var(--ink-soft)}
+
+  .src{font-size:.8rem;color:var(--ink-soft);padding:10px 0;border-top:1px solid var(--line);display:flex;gap:12px}
+  .src .d{flex:0 0 92px;font-weight:600;color:var(--ink)}
+  .src a{color:var(--orange-deep);text-decoration:none;word-break:break-word}
+  .src a:hover{text-decoration:underline}
+
+  .disclaimer{font-size:.82rem;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:10px}
+  footer{border-top:1px solid var(--line);padding:24px 0;font-size:.78rem;color:var(--ink-soft);text-align:center}
+
+  @media print{
+    nav.tabs,header.top .btn{display:none}
+    section.panel{display:block!important;page-break-inside:avoid}
+    body{background:#fff}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <div class="dot"></div>
+      <div>
+        <div class="sub">Innra mælaborð</div>
+        <h1>Viðreisn · Fylgi &amp; árangur</h1>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px">
+      <div class="updated">Síðast uppfært<br><b id="upd">5. júní 2026</b></div>
+      <button class="btn" onclick="window.print()">Prenta / PDF</button>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="tabs-inner" id="tabbar"></div>
+</nav>
+
+<main class="wrap" id="main"></main>
+
+<footer class="wrap">
+  Mælaborð tekið saman 5. júní 2026 · Gögn uppfærast handvirkt í <code>DATA</code>-hlutanum í þessari skrá.
+</footer>
+
+<script>
+/* ============================================================
+   GÖGN — breyttu hér til að uppfæra mælaborðið.
+   Hvert svið er sjálfstætt; bættu við hlutum eftir þörfum.
+   ============================================================ */
+const DATA = {
+
+  /* ---- Landsmál: fylgi ---- */
+  national: {
+    headline: "13,5%",
+    headlineLabel: "Þingfylgi Viðreisnar á landsvísu",
+    headlineMeta: "Prósent, könnun lögð fyrir 21. jan – 16. feb 2026. Þriðji stærsti flokkur landsins.",
+    context: "Viðreisn situr í ríkisstjórn frá 21. desember 2024 og hefur fjóra ráðherra. Fylgi flokksins er jafnast allra flokka eftir búsetu og sterkast meðal kvenna, ungs fólks, háskólamenntaðra og millitekjuhópa (Maskína/Prósent, vor 2026).",
+    // Kjörnir fulltrúar Viðreisnar í sveitarstjórnarkosningunum 16. maí 2026
+    seatsByMuni: [
+      {name:"Reykjavík", seats:2, total:23, q:false},
+      {name:"Hafnarfjörður", seats:2, total:11, q:false},
+      {name:"Kópavogur", seats:1, total:11, q:false},
+      {name:"Ísafjarðarbær", seats:1, total:9, q:false},
+      {name:"Mosfellsbær", seats:1, total:11, q:false},
+      {name:"Akranes", seats:1, total:9, q:false},
+      {name:"Árborg", seats:1, total:11, q:false},
+      {name:"Múlaþing", seats:1, total:11, q:false}
+    ]
+  },
+
+  /* ---- Kannanir eftir málefnum (umgjörð — fylltu inn jafnóðum) ---- */
+  issues: [
+    {topic:"ESB-aðild / aðildarviðræður", note:"Lykilmál Viðreisnar. Skráðu nýjustu könnun (Maskína/Gallup) hér: hlutfall fylgjandi/andvígra og þróun.", val:null},
+    {topic:"Gjaldmiðill (króna / evra)", note:"Tengist beint efnahagsstefnu flokksins. Bættu við niðurstöðum kannana um stuðning við upptöku evru.", val:null},
+    {topic:"Traust til ríkisstjórnarinnar", note:"Mánaðarleg þjóðarpúls-mæling Gallup. Skráðu ánægju með störf ríkisstjórnar.", val:null}
+  ],
+
+  /* ---- Ríkisstjórn ---- */
+  govt: {
+    formed:"21. desember 2024",
+    pm:"Kristrún Frostadóttir (Samfylking)",
+    parties:"Samfylking · Viðreisn · Flokkur fólksins",
+    seatsNote:"Viðreisn fer með fjögur ráðuneyti af ellefu.",
+    ministers: [
+      {name:"Þorgerður Katrín Gunnarsdóttir", role:"Utanríkisráðherra", note:"Formaður Viðreisnar. Eini ráðherra stjórnarinnar með fyrri ríkisstjórnarreynslu.", initials:"ÞK"},
+      {name:"Daði Már Kristófersson", role:"Fjármála- og efnahagsráðherra", note:"Leiðir fjárlagavinnu; helmingun halla á fyrsta ári og stefnt að hallalausum ríkissjóði 2027.", initials:"DM"},
+      {name:"Hanna Katrín Friðriksson", role:"Atvinnuvegaráðherra", note:"Nýtt sameinað ráðuneyti (sjávarútvegur, landbúnaður, iðnaður). Bar fram leiðréttingu veiðigjalda.", initials:"HK"},
+      {name:"Þorbjörg Sigríður Gunnlaugsdóttir", role:"Dómsmálaráðherra", note:"Fer með dóms- og löggæslumál.", initials:"ÞS"}
+    ]
+  },
+
+  /* ---- Þingmál / árangur ríkisstjórnar (Viðreisn í broddi fylkingar merkt sérstaklega) ---- */
+  bills: [
+    {year:"Sumar 2025", title:"Leiðrétting veiðigjalda", desc:"Frumvarp Hönnu Katrínar Friðriksson atvinnuvegaráðherra. Veiðigjald miðað við raunverulegt aflaverðmæti; hærra frítekjumark hlífir litlum og meðalstórum útgerðum. Áætluð tekjuaukning ríkissjóðs um 7,5 ma.kr.", tags:["Viðreisn-ráðherra","Auðlindamál"]},
+    {year:"Des. 2025", title:"Fjárlög 2026", desc:"Undir forystu Daða Más Kristóferssonar fjármálaráðherra. Halli helmingaður á fyrsta heila ári stjórnarinnar; fimm stýrivaxtalækkanir og lægsta verðbólga frá 2020 á tímabilinu. Ríkisskuldir lækkaðar um 7,5% af VLF.", tags:["Viðreisn-ráðherra","Ríkisfjármál"]},
+    {year:"1. júní 2026", title:"Nýtt kerfi í stað jafnlaunavottunar", desc:"Alþingi samþykkti einfaldara kerfi sem leysir jafnlaunavottun af hólmi. Stjórnarmál.", tags:["Ríkisstjórn"]},
+    {year:"2024–2026", title:"Efnahagsstöðugleiki", desc:"Áhersla stjórnarsáttmálans á lækkun vaxta og verðbólgu með styrkri stjórn ríkisfjármála — kjarnastef Viðreisnar í stjórnarsamstarfinu.", tags:["Ríkisstjórn","Efnahagsmál"]}
+  ],
+
+  /* ---- Sveitarstjórnir (kosningar 16. maí 2026) ---- */
+  munis: [
+    {
+      name:"Reykjavík", status:"maj",
+      seats:2, total:23, voteNote:"2 borgarfulltrúar",
+      oddviti:"Björg Magnúsdóttir",
+      fulltrui2:"Róbert Ragnarsson",
+      embætti:"Forseti borgarstjórnar",
+      coalition:"Sjálfstæðisflokkur (9) · Viðreisn (2) · Framsókn (1) — 12 af 23",
+      detail:"Nýr meirihluti kynntur í Viðey 27. maí; ný borgarstjórn tók til starfa 2. júní. Hildur Björnsdóttir (D) borgarstjóri, Einar Þorsteinsson (B) formaður borgarráðs. Einar og Björg skipta um embætti 1. júní 2027. 190 verkefni á verkefnalista meirihlutans; endurskoðun samgöngusáttmála meðal forgangsmála."
+    },
+    {
+      name:"Hafnarfjörður", status:"maj",
+      seats:2, total:11, voteNote:"14,3% · 2 fulltrúar (+1)",
+      oddviti:"Karólína Helga Símonardóttir",
+      fulltrui2:"Árni Stefán Guðjónsson",
+      embætti:"Forseti bæjarstjórnar",
+      coalition:"Sjálfstæðisflokkur (3) · Viðreisn (2) · Samfylking (2) — 7 af 11",
+      detail:"Nýr málefnasamningur 2026–2030 undir yfirskriftinni „Frelsi, ábyrgð, velferð og lífsgæði“. Orri Björnsson (D) formaður bæjarráðs; ráðinn utanaðkomandi bæjarstjóri, Þórður Þórarinsson. Viðreisn og Samfylking skipta með sér embætti forseta bæjarstjórnar á kjörtímabilinu. Viðreisn jók fylgi um 5,1 prósentustig.",
+      aherslur:[
+        "Fjármál og stjórnsýsla: traustur rekstur og lægri skuldir án þjónustuskerðingar, útsvar ekki hækkað og fasteignagjöld ekki umfram verðlag, rekstrar- og stjórnsýsluúttekt og stafræn umbreyting.",
+        "Börn og ungmenni: heimagreiðslur og niðurgreiðsla dagforeldra hækkaðar í allt að 230 þús. kr., þak á gjaldskrá dagforeldra og gjaldfrjáls strætó fyrir 18 ára og yngri frá 1. janúar 2027.",
+        "Skólar: aukið aðgengi að sérfræðingum, minna álag í leik- og grunnskólum, ný forvarnarstefna og lausn á húsnæðismálum Tónlistarskólans.",
+        "Atvinnulíf: ný atvinnustefna, fleiri lóðir og lágar álögur á fyrirtæki, og markaðssetning Hafnarfjarðar fyrir nýsköpun og ferðaþjónustu.",
+        "Velferð: lífsgæðakjarni eldra fólks við Sólvang, uppbygging hjúkrunarheimila, ný heilsugæslustöð á Völlunum og fjölgun félagslegra íbúða.",
+        "Skipulag og húsnæði: fjölbreyttar lóðir og hlutdeildarlánaíbúðir, einfaldari leyfisferli, undirbúningur nýrrar hafnar í Straumsvík og endurskoðun vaxtamarka.",
+        "Samgöngur og umhverfi: úrbætur á Flóttamannavegi, endurskoðun samgöngusáttmálans m.t.t. Hafnarfjarðar og fjölgun hjóla- og göngustíga.",
+        "Íþróttir og menning: frístundastyrkur hækkaður í 75 þús. kr. frá 1. janúar 2027, íþrótta- og tómstundamiðstöð í Hamranesi og lengri opnunartími sundlauga."
+      ]
+    },
+    {
+      name:"Kópavogur", status:"opp",
+      seats:1, total:11, voteNote:"~10% · 1 fulltrúi",
+      oddviti:"María Ellen Steingrímsdóttir",
+      embætti:"Minnihluti",
+      coalition:"Sjálfstæðisflokkur með hreinan meirihluta (6 fulltrúar, Ásdís Kristjánsdóttir bæjarstjóri)",
+      detail:"Viðreisn í minnihluta. Aðhalds- og eftirlitshlutverk; tækifæri til að móta sérstöðu gagnvart hreinum D-meirihluta."
+    },
+    {
+      name:"Ísafjarðarbær", status:"maj",
+      seats:1, total:9, voteNote:"1 fulltrúi",
+      oddviti:"Gylfi Ólafsson",
+      embætti:"Bæjarstjóri",
+      coalition:"Viðreisn (1) · Framsókn og óháðir (4) — meirihluti (5 af 9)",
+      detail:"Viðreisn er í meirihlutasamstarfi með Framsókn og óháðum og fer með embætti bæjarstjóra. Gylfi Ólafsson er bæjarstjóri Ísafjarðarbæjar. Málefnasamningur Framsóknar og óháðra og Viðreisnar fyrir kjörtímabilið 2026–2030.",
+      aherslur:[
+        "Skólamál: mönnun leikskóla skoðuð til að tryggja samfellu frá fæðingarorlofi, húsnæði Grunnskólans á Ísafirði, Eyrarskjóls og Sólborgar stækkað og reglur um símanotkun mótaðar.",
+        "Tómstundir: almenningssamgöngur endurskoðaðar með áherslu á börn í smærri byggðakjörnum, efld ungmennaþjónusta og frístundastyrkir, og hoppubelgur í Holtahverfi.",
+        "Innviðir og skipulag: bætt þjónusta og málshraði á umhverfis- og eignasviði, fjölbreyttar lóðir í öllum byggðakjörnum, aðalskipulag klárað og þétting byggðar í miðbæ.",
+        "Umhverfi og ásýnd: snyrtileg bæjarsvæði með íbúaátaki, stefna um göngustíga og gönguleiðir og hraðari uppbygging gangstétta.",
+        "Atvinnulíf: fyrirtæki löðuð að með virku samtali, betra rafkerfi, umhverfisvænt sjókvíaeldi, heilsársferðaþjónusta og bættar samgöngur allt árið.",
+        "Velferð: aðgerðaáætlun um hjólastólaaðgengi, móttökuáætlun fyrir innflytjendur, tekjutengdir frístundastyrkir eldri borgara og efld akstursþjónusta.",
+        "Íþróttir: framtíðarskipulag íþróttaaðstöðu á Torfnesi, aukið viðhald og tækjakaup, efld skíðasvæði og aðstaða fyrir akstursíþróttir og fjallahjólreiðar.",
+        "Menning: þríhliða samningur um Edinborgarhús, efling Byggðasafns Vestfjarða og stækkun styrktarsjóðs hafna til menningar og fegrunar.",
+        "Stjórnsýsla: frekari lækkun skulda, aukin samvinna milli byggðakjarna, stofnun ungmennaráðs, opið fyrir sameiningu sveitarfélaga og ný vefslóð ísafjarðarbær.is.",
+        "Samgöngu- og hafnamál: móttökuhús fyrir skemmtiferðaskip klárað, aukið viðhald og nýframkvæmdir á höfnum og endurskoðuð gjaldskrá og stefna um móttöku skemmtiferðaskipa."
+      ]
+    },
+    {
+      name:"Mosfellsbær", status:"maj",
+      seats:1, total:11, voteNote:"10,1% · 1 fulltrúi",
+      oddviti:"Gylfi Þór Þorsteinsson",
+      embætti:"Forseti bæjarstjórnar",
+      coalition:"Sjálfstæðisflokkur (5) · Viðreisn (1) — meirihluti (6 af 11)",
+      detail:"Viðreisn myndar meirihluta með Sjálfstæðisflokki kjörtímabilið 2026–2030. Gylfi Þór Þorsteinsson, oddviti Viðreisnar, verður forseti bæjarstjórnar; Hilmar Gunnarsson er oddviti Sjálfstæðisflokks. Málefnasamningur undirritaður 28. maí 2026 undir yfirskriftinni „Frelsi · Ábyrgð · Mannleg nálgun“.",
+      aherslur:[
+        "Ábyrgur og traustur rekstur, sterk fjárhagsstaða og ný fjármálastefna fyrir bæinn.",
+        "Lægri álögur — lækkun fasteignaskatts á atvinnu- og íbúðarhúsnæði og hófleg gjöld.",
+        "Einfaldari stjórnsýsla, styttri boðleiðir og bætt stafræn þjónusta.",
+        "Skólastarf í fremstu röð, fjölbreytt rekstrarform leik- og grunnskóla og inntaka á leikskóla við 12 mánaða aldur.",
+        "Aukin sálfræði- og talmeinaþjónusta í skólum og styttri biðlistar.",
+        "Skipulag: þrýst á Sundabraut og hágæða almenningssamgöngur, valfrelsi í ferðamáta og uppbygging miðbæjar.",
+        "Heildaruppbygging Varmársvæðis (þjónustubygging og stúka) og opnun skíðasvæðis í Skálafelli.",
+        "Velferð: fjölbreytt rekstrarform í heilsugæslu, fleiri hjúkrunar- og dagdvalarrými og bætt þjónusta við fatlað fólk.",
+        "Öflugt atvinnulíf með fleiri lóðum og hvötum, ásamt vernd grænna svæða og útivistarperla.",
+        "Menning: Álafosskvos efld, skoðaður fjölnota tónlistarsalur og fjölgað útilistaverkum."
+      ]
+    },
+    {
+      name:"Akranes", status:"opp",
+      seats:1, total:9, voteNote:"1 fulltrúi",
+      oddviti:"Jón Guðni Guðmundsson",
+      embætti:"Minnihluti",
+      coalition:"Meirihluti Sjálfstæðisflokks og Samfylkingar hélt velli — Viðreisn í minnihluta",
+      detail:"Viðreisn náði inn einum fulltrúa, Jóni Guðna Guðmundssyni, og er í minnihluta. Aðhalds- og eftirlitshlutverk. Stuðst er við stefnu framboðsins „Fersk rödd – ný nálgun“ í stað málefnasamnings.",
+      aherslurTitle:"Úr stefnu framboðsins",
+      aherslur:[
+        "Börnin í forgang: nýr leikskóli, færri börn á hvern starfsmann, hækkaðar niðurgreiðslur leikskóla og dagvistunar og samtal um nýjan grunnskóla.",
+        "Sérfræðiþjónusta inn í skólana: sálfræðingar, talmeinafræðingar og iðjuþjálfar starfi innan skólanna án biðlista.",
+        "Frístundir og íþróttir: hækkaður frístundastyrkur, sama upphæð á hvert barn óháð systkinafjölda, samþætt skóla- og frístundastarf og nýtt ungmennahús.",
+        "Ábyrg fjármál: opið bókhald í rauntíma, engar hækkanir álaga, straumlínulöguð stjórnsýsla og sala eigna utan kjarnastarfsemi til að lækka skuldir.",
+        "Atvinnulíf og nýsköpun: hagstæðar lóðir og lægri fasteignaskattur á atvinnuhúsnæði, hraðari leyfisveitingar, uppbygging á Breið og höfninni og grænn iðngarður á Grundartanga.",
+        "Ferðaþjónusta: Akranes sem áfangastaður — Guðlaug, Langisandur, endurvakinn miðbær um Landsbankahúsið og stækkun Garðavallar í 27 holur.",
+        "Velferð: útrýming biðlista í búsetuúrræðum fatlaðra, fjölgun þjónustuíbúða fyrir eldra fólk og samræmd heimaþjónusta og heimahjúkrun.",
+        "Skipulag og innviðir: ný húsnæðisáætlun 2027–2033, fjölbreytt íbúðaframboð og markviss viðhaldsáætlun gatna, gangstétta og skólalóða.",
+        "Samgöngur og umhverfi: öruggar leiðir barna, samfellt net göngu- og hjólastíga, áreiðanlegri almenningssamgöngur og grænt sveitarfélag með mælanleg loftslagsmarkmið.",
+        "Íbúalýðræði: virkur samráðsvettvangur að fyrirmynd Betri Reykjavíkur/Hafnarfjarðar, gagnsæ birting bæjarmála og virkt ungmennaráð."
+      ]
+    },
+    {
+      name:"Árborg", status:"opp",
+      seats:1, total:11, voteNote:"1 fulltrúi",
+      oddviti:"Heiðrún Kristmundsdóttir",
+      embætti:"Minnihluti",
+      coalition:"Sjálfstæðisflokkur með hreinan meirihluta — Viðreisn í minnihluta",
+      detail:"Viðreisn náði inn einum fulltrúa, Heiðrúnu Kristmundsdóttur, og er í minnihluta. Stuðst er við stefnu framboðsins í stað málefnasamnings.",
+      aherslurTitle:"Úr stefnu framboðsins",
+      aherslur:[
+        "Börn, ungmenni og fjölskyldur: forvarnir og snemmbær stuðningur, samfella í þjónustu og jafnt aðgengi að íþróttum og tómstundum óháð fjárhag og búsetu.",
+        "Leikskólar og dagvistun: aðgangur frá 12 mánaða aldri eða við lok fæðingarorlofs og stuðningur við fjölbreytt rekstrarform og dagforeldra.",
+        "Grunnskólar, frístund og símenntun: heildstæð þjónustukeðja með forvörnum, skapandi námsumhverfi, endurskoðaður frístundaakstur og fjölbreytt framhaldsfræðsla.",
+        "Eldri íbúar: sjálfsprottið félagsstarf undir eigin stjórn og stuðningur til að búa lengur heima með velferðartækni og endurhæfingu.",
+        "Fatlað fólk: aukið samráð á þeirra forsendum, betra aðgengi og fjölbreyttir búsetumöguleikar.",
+        "Menning: varðveita menningararf, styðja listafólk með vinnu- og sýningarhúsnæði og endurvekja menningarnefnd.",
+        "Íþróttir og tómstundir: uppbygging íþróttamannvirkja með vandaðri valkostagreiningu og íbúaaðkomu og endurskoðaður frístundastyrkur.",
+        "Skipulag: lífsgæði fram yfir skammtímahagsmuni, vernd grænna svæða, færri og betri útivistarsvæði og aukin trjárækt.",
+        "Atvinnuþróun: aðstaða fyrir fjarvinnu og störf án staðsetningar, stuðningur við fyrirtæki og frumkvöðla og samvinna við nágrannasveitarfélög.",
+        "Umhverfi og úrgangur: lausn á skólphreinsun frá Stokkseyri og Eyrarbakka og magnbundin gjaldtaka á úrgang („pay as you throw“) með áherslu á hringrásarhagkerfi.",
+        "Fjármál og snjallvæðing: ábyrg lækkun skulda, einfaldari verkferlar, íbúakosningar og markviss innleiðing stafrænnar tækni og gervigreindar."
+      ]
+    },
+    {
+      name:"Múlaþing", status:"opp",
+      seats:1, total:11, voteNote:"11,2% · 1 fulltrúi",
+      oddviti:"Hólmfríður Rut Einarsdóttir",
+      embætti:"Minnihluti",
+      coalition:"Meirihluti Sjálfstæðisflokks og Framsóknar (7 af 11) — framboð Viðreisnar og Austurlista í minnihluta",
+      detail:"Viðreisn bauð fram á sameiginlegum lista með Austurlistanum (L-lista) og fékk einn fulltrúa, Hólmfríði Rut Einarsdóttur. Listinn er í minnihluta ásamt VG og óháðum (2) og Miðflokki (1). Viðreisn/Austurlisti og Miðflokkur skipta með sér sæti í byggðaráði — Hólmfríður Rut er áheyrnarfulltrúi fyrri tvö árin og fær atkvæðisrétt þau síðari. Stuðst er við sameiginlega stefnu listanna.",
+      aherslurTitle:"Úr stefnu Austurlistans og Viðreisnar",
+      aherslur:[
+        "Börn og ungmenni: jöfn tækifæri óháð búsetu, betri geðheilbrigðisþjónusta á öllum skólastigum, fleiri sérfræðingar í skólum og öflugt frístundastarf.",
+        "Velferð til framtíðar: snemmtæk íhlutun, fjölgun þroska- og iðjuþjálfa, efld heimaþjónusta og hjúkrunarrými fyrir eldra fólk og íslenskukennsla fyrir íbúa af erlendum uppruna.",
+        "Fagleg stjórnsýsla og ábyrgur rekstur: opið bókhald, endurskoðun innkaupa með 5–12% sparnaði, stafrænar lausnir og sterkari heimastjórnir.",
+        "Tengjum Múlaþing: göngu- og hjólastígar, öflugri almenningssamgöngur og vetrarþjónusta, öruggar leiðir barna og hagsmunagæsla um Egilsstaðaflugvöll.",
+        "Mennt er máttur: efld samþætt stoðþjónusta á öllum skólastigum, gott náms- og starfsumhverfi og stuðningur við endurmenntun kennara.",
+        "Uppbygging og skipulag: fjölbreytt íbúðarhúsnæði fyrir öll lífsskeið, lækkun álagningarprósentu á móti hækkandi fasteignamati og efling miðbæjar Egilsstaða.",
+        "Atvinnulíf og nýsköpun: atvinnuuppbygging á Seyðisfirði, beint áætlunarflug frá Egilsstöðum innan þriggja ára, orka úr héraði og einföldun regluverks.",
+        "Loftslag og umhverfi: kolefnishlutleysi í rekstri fyrir 2035, hringrásarhagkerfi og aukin endurvinnsla og ábyrg vernd náttúruperla."
+      ]
+    }
+  ],
+
+  /* ---- Heimildir ---- */
+  sources: [
+    {d:"feb 2026", t:"Prósent — fylgi flokka á landsvísu (Viðreisn 13,5%)", u:"https://prosent.is/samfylkingin-med-mesta-fylgid-2/"},
+    {d:"des 2024", t:"Stjórnarráðið — ráðuneyti Kristrúnar Frostadóttur skipað", u:"https://www.stjornarradid.is/efst-a-baugi/frettir/stok-frett/2024/12/21/Fyrsta-raduneyti-Kristrunar-Frostadottur-skipad/"},
+    {d:"mars 2025", t:"Stjórnarráðið — veiðigjöld í sjávarútvegi leiðrétt (Hanna Katrín)", u:"https://www.stjornarradid.is/efst-a-baugi/frettir/stok-frett/2025/03/25/Veidigjold-i-sjavarutvegi-leidrett-/"},
+    {d:"des 2025", t:"Grein Kristrúnar — árangur ríkisstjórnar á fyrsta ári", u:"https://www.stjornarradid.is/gogn/raeda/2025/12/22/Samstiga-rikisstjorn-i-sigri-og-thraut-Grein-Kristrunar-Frostadottur-forsaetisradherra-a-Visi-21.-desember-2025/"},
+    {d:"maí 2026", t:"Wikipedia — Borgarstjórnarkosningar í Reykjavík 2026", u:"https://is.wikipedia.org/wiki/Borgarstj%C3%B3rnarkosningar_%C3%AD_Reykjav%C3%ADk_2026"},
+    {d:"maí 2026", t:"Hafnarfjörður — nýr meirihluti 2026–2030 (D·C·S)", u:"https://hafnarfjordur.is/nyr-meirihluti-i-hafnarfirdi-2026-2030/"},
+    {d:"maí 2026", t:"Vísir — lokatölur í Kópavogi og Reykjavík", u:"https://www.visir.is/g/20262878959d/loka-tolur-i-kopa-vogi-as-dis-med-hreinan-meiri-hluta"},
+    {d:"maí 2026", t:"Vísir — sveitarstjórnarkosningar 2026 (Ísafjörður o.fl.)", u:"https://www.visir.is/p/sveitarstjornarkosningar2026"},
+    {d:"jún 2026", t:"DV — 190 verkefni á verkefnalista borgarstjórnarmeirihluta", u:"https://www.dv.is/frettir/2026/6/2/190-verkefni-verkefnalista-meirihluta-borgarstjornar-thessu-aetlar-hann-ad-breyta-borginni/"}
+  ]
+};
+
+/* ============================================================
+   RÖKVÍSI — útfærsla mælaborðsins
+   ============================================================ */
+const TABS = [
+  {id:"yfirlit", label:"Yfirlit"},
+  {id:"fylgi", label:"Fylgi"},
+  {id:"rikisstjorn", label:"Ríkisstjórn"},
+  {id:"thingmal", label:"Þingmál"},
+  {id:"sveitir", label:"Sveitarstjórnir"},
+  {id:"heimildir", label:"Heimildir"}
+];
+
+const statusMeta = {
+  maj:{cls:"b-maj", txt:"Meirihluti"},
+  jun:{cls:"b-jun", txt:"Samstarfsaðili"},
+  opp:{cls:"b-opp", txt:"Minnihluti"},
+  todo:{cls:"b-todo", txt:"Útfæra"}
+};
+
+function seatsDots(on, total){
+  on = on || 0;
+  let h = '<span class="seats">';
+  for(let i=0;i<total;i++) h += `<span class="seat ${i<on?'on':''}"></span>`;
+  return h+'</span>';
+}
+
+function render(){
+  // tabs
+  document.getElementById('tabbar').innerHTML = TABS.map((t,i)=>
+    `<button class="tab ${i===0?'active':''}" data-tab="${t.id}">${t.label}</button>`).join('');
+
+  const m = document.getElementById('main');
+  m.innerHTML = panelYfirlit()+panelFylgi()+panelRikisstjorn()+panelThingmal()+panelSveitir()+panelHeimildir();
+
+  document.querySelectorAll('.tab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('p-'+btn.dataset.tab).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+      if(btn.dataset.tab==='fylgi') animateBars();
+    });
+  });
+  animateBars();
+}
+
+/* ---- Yfirlit ---- */
+function panelYfirlit(){
+  const totalSeats = DATA.national.seatsByMuni.reduce((a,b)=>a+(b.seats||0),0);
+  const known = DATA.munis.filter(x=>x.status!=='todo').length;
+  return `<section class="panel active" id="p-yfirlit">
+    <div class="eyebrow">Staðan í hnotskurn · 5. júní 2026</div>
+    <h2 class="sec">Viðreisn í lykilstöðu — landsmál og sveitarstjórnir</h2>
+    <p class="lede">Stutt yfirlit yfir fylgi, ráðherra, þingmál og stöðu flokksins í sveitarstjórnum eftir kosningarnar 16. maí. Smelltu á flipana að ofan fyrir nánari sundurliðun.</p>
+    <div class="grid g4">
+      <div class="card stat"><div class="n">${DATA.national.headline}</div><div class="lbl">Þingfylgi á landsvísu</div><div class="meta">Prósent, feb. 2026 · 3. stærsti flokkur</div></div>
+      <div class="card stat"><div class="n">4</div><div class="lbl">Ráðherrar í ríkisstjórn</div><div class="meta">Af 11 · frá 21. des. 2024</div></div>
+      <div class="card stat"><div class="n">${totalSeats}</div><div class="lbl">Kjörnir fulltrúar í sveitarstjórnum</div><div class="meta">Í öllum 8 sveitarfélögunum</div></div>
+      <div class="card stat"><div class="n accent">2</div><div class="lbl">Forsetaembætti sveitarstjórna</div><div class="meta">Reykjavík &amp; Hafnarfjörður</div></div>
+    </div>
+    <div class="callout" style="margin-top:24px">
+      <h3>Verkefni framundan</h3>
+      <p>Öll átta sveitarfélögin eru nú staðfest með úrslitum, embættum og áherslum. Næstu skref: byrja að skrá málefnakannanir (ESB, gjaldmiðill, traust til stjórnar) og byggja upp innviði (fundadagatal, raddglósur, efnisferli) þegar þing og sveitarstjórnir koma saman að nýju í ágúst/september.</p>
+    </div>
+  </section>`;
+}
+
+/* ---- Fylgi ---- */
+function panelFylgi(){
+  const n = DATA.national;
+  const maxSeats = Math.max(...n.seatsByMuni.map(s=>s.seats||0),3);
+  const bars = n.seatsByMuni.map(s=>{
+    const isQ = s.q;
+    const h = isQ?28:((s.seats/maxSeats)*100);
+    return `<div class="bar-col">
+      <div class="bar ${isQ?'q':''}" data-h="${h}" style="height:0">
+        <span class="v">${isQ?'?':s.seats}</span>
+      </div>
+      <div class="bar-lbl">${s.name}</div>
+      <div class="bar-sub">af ${s.total}</div>
+    </div>`;
+  }).join('');
+
+  const issues = DATA.issues.map(i=>`
+    <div class="bill" style="border-top:1px solid var(--line)">
+      <div class="yr" style="flex:0 0 0"></div>
+      <div>
+        <h3>${i.topic}</h3>
+        <p>${i.note}</p>
+        ${i.val?`<div class="tags"><span class="badge b-gov">${i.val}</span></div>`:''}
+      </div>
+    </div>`).join('');
+
+  return `<section class="panel" id="p-fylgi">
+    <div class="eyebrow">Fylgiskannanir</div>
+    <h2 class="sec">Fylgi á landsvísu og í sveitarfélögum</h2>
+    <p class="lede">${n.context}</p>
+    <div class="grid g3" style="margin-bottom:30px">
+      <div class="card stat" style="grid-column:span 1">
+        <div class="n">${n.headline}</div>
+        <div class="lbl">${n.headlineLabel}</div>
+        <div class="meta">${n.headlineMeta}</div>
+      </div>
+      <div class="card" style="grid-column:span 2">
+        <div class="eyebrow" style="margin-bottom:4px">Kjörnir fulltrúar Viðreisnar · sveitarstjórnarkosningar 16. maí 2026</div>
+        <div class="bars">${bars}</div>
+        <p class="bar-sub" style="margin-top:12px">Skástrikaðar súlur = úrslit ekki staðfest í þessu mælaborði enn.</p>
+      </div>
+    </div>
+    <div class="eyebrow">Kannanir eftir málefnum</div>
+    <h2 class="sec" style="font-size:1.4rem">Málefnamælingar — umgjörð til útfyllingar</h2>
+    <p class="lede">Hér er rammi fyrir reglulegar málefnakannanir. Fylltu inn nýjustu tölur jafnóðum (Maskína, Gallup þjóðarpúls, Prósent).</p>
+    <div class="card">${issues}</div>
+  </section>`;
+}
+
+/* ---- Ríkisstjórn ---- */
+function panelRikisstjorn(){
+  const g = DATA.govt;
+  const cards = g.ministers.map(mi=>`
+    <div class="card min">
+      <div class="av">${mi.initials}</div>
+      <div>
+        <h3>${mi.name}</h3>
+        <div class="role">${mi.role}</div>
+        <p>${mi.note}</p>
+      </div>
+    </div>`).join('');
+  return `<section class="panel" id="p-rikisstjorn">
+    <div class="eyebrow">Ráðherrar Viðreisnar</div>
+    <h2 class="sec">Viðreisn í ríkisstjórn</h2>
+    <p class="lede">Ríkisstjórn ${g.parties}, mynduð ${g.formed}. Forsætisráðherra: ${g.pm}. ${g.seatsNote}</p>
+    <div class="grid g2">${cards}</div>
+    <div class="disclaimer" style="margin-top:22px">Til athugunar: ráðherraskipan getur breyst. Staðfestu á stjornarradid.is áður en vitnað er í tölur eða embætti opinberlega.</div>
+  </section>`;
+}
+
+/* ---- Þingmál ---- */
+function panelThingmal(){
+  const list = DATA.bills.map(b=>{
+    const tags = b.tags.map(t=>{
+      const c = t.includes('Viðreisn')?'b-jun':'b-gov';
+      return `<span class="badge ${c}">${t}</span>`;
+    }).join('');
+    return `<div class="bill">
+      <div class="yr">${b.year}</div>
+      <div><h3>${b.title}</h3><p>${b.desc}</p><div class="tags">${tags}</div></div>
+    </div>`;
+  }).join('');
+  return `<section class="panel" id="p-thingmal">
+    <div class="eyebrow">Mál sem náðu fram að ganga</div>
+    <h2 class="sec">Árangur þingflokks og ráðherra Viðreisnar</h2>
+    <p class="lede">Helstu mál ríkisstjórnarinnar þar sem Viðreisn kom að, með áherslu á mál undir forystu ráðherra flokksins. Bættu við einstökum þingmálum þingflokksins eftir þörfum.</p>
+    <div class="card">${list}</div>
+  </section>`;
+}
+
+/* ---- Sveitarstjórnir ---- */
+function panelSveitir(){
+  const list = DATA.munis.map(mu=>{
+    const sm = statusMeta[mu.status];
+    const dots = mu.seats!=null ? seatsDots(mu.seats, mu.total) : '';
+    return `<div class="muni">
+      <div class="muni-head">
+        <h3>${mu.name} ${dots}</h3>
+        <span class="badge ${sm.cls}">${sm.txt}</span>
+      </div>
+      <div class="muni-meta">
+        <div><span>Fulltrúar</span><b>${mu.voteNote}</b></div>
+        <div><span>Oddviti</span><b>${mu.oddviti}</b></div>
+        ${mu.fulltrui2 ? `<div><span>2. fulltrúi</span><b>${mu.fulltrui2}</b></div>` : ''}
+        <div><span>Embætti</span><b>${mu.embætti}</b></div>
+        <div><span>Meirihluti</span><b>${mu.coalition}</b></div>
+      </div>
+      <div class="note">${mu.detail}</div>
+      ${mu.aherslur && mu.aherslur.length ? `<div class="aherslur"><div class="ah-title">${mu.aherslurTitle || 'Úr málefnasamningi'}</div><ul>${mu.aherslur.map(a=>`<li>${a}</li>`).join('')}</ul></div>` : ''}
+    </div>`;
+  }).join('');
+  return `<section class="panel" id="p-sveitir">
+    <div class="eyebrow">Sveitarstjórnarkosningar · 16. maí 2026</div>
+    <h2 class="sec">Staða Viðreisnar í sveitarfélögunum</h2>
+    <p class="lede">Sundurliðun eftir þeim átta sveitarfélögum sem þú sinnir. Fjögur eru staðfest hér; fjögur bíða útfyllingar.</p>
+    <div class="card">${list}</div>
+  </section>`;
+}
+
+/* ---- Heimildir ---- */
+function panelHeimildir(){
+  const list = DATA.sources.map(s=>`<div class="src"><div class="d">${s.d}</div><a href="${s.u}" target="_blank" rel="noopener">${s.t}</a></div>`).join('');
+  return `<section class="panel" id="p-heimildir">
+    <div class="eyebrow">Heimildir &amp; aðferð</div>
+    <h2 class="sec">Hvaðan koma tölurnar</h2>
+    <p class="lede">Allar tölur eru frá opinberum og fréttaheimildum, með dagsetningu. Mælaborðið er augnabliksmynd — fylgi og embætti breytast.</p>
+    <div class="card" style="margin-bottom:18px">${list}</div>
+    <div class="disclaimer">
+      <b>Aðferð:</b> Fylgistölur eru frá einstökum könnunum tiltekinna fyrirtækja og endurspegla ekki vegið meðaltal. Sveitarstjórnartölur miðast við úrslit 16. maí 2026 og meirihlutamyndanir sem tilkynntar voru síðustu vikuna í maí. Öll átta sveitarfélögin sem hér eru rakin eru staðfest. Uppfærðu <code>DATA</code>-hlutann í skránni til að halda mælaborðinu lifandi.
+    </div>
+  </section>`;
+}
+
+function animateBars(){
+  setTimeout(()=>{
+    document.querySelectorAll('#p-fylgi .bar').forEach(b=>{
+      b.style.height = b.dataset.h+'%';
+    });
+  },80);
+}
+
+render();
+</script>
+</body>
+</html>
