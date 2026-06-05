@@ -46,7 +46,7 @@
   }
   .top-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 24px;max-width:1180px;margin:0 auto;flex-wrap:wrap}
   .brand{display:flex;align-items:center;gap:14px}
-  .brand .dot{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 32% 28%, #ff8a3c, var(--orange) 60%, var(--orange-deep));box-shadow:0 4px 14px rgba(242,107,29,.4)}
+  .brand .logo{height:38px;width:auto;display:block;border-radius:6px;box-shadow:0 4px 14px rgba(242,107,29,.35)}
   .brand h1{font-family:'Fraunces',serif;font-weight:600;font-size:1.28rem;letter-spacing:-.01em;line-height:1.05}
   .brand .sub{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
   .updated{font-size:.78rem;color:var(--ink-soft);text-align:right}
@@ -74,6 +74,7 @@
   .g2{grid-template-columns:repeat(2,1fr)}
   .g3{grid-template-columns:repeat(3,1fr)}
   .g4{grid-template-columns:repeat(4,1fr)}
+  .gstat{grid-template-columns:repeat(auto-fit,minmax(185px,1fr))}
   @media(max-width:860px){.g2,.g3,.g4{grid-template-columns:1fr}}
   .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
   .card.flush{padding:0;overflow:hidden}
@@ -99,6 +100,12 @@
   .min h3{font-size:1.02rem;font-weight:700;letter-spacing:-.01em}
   .min .role{color:var(--orange-deep);font-weight:600;font-size:.86rem;margin-bottom:4px}
   .min p{font-size:.84rem;color:var(--ink-soft)}
+  .nefndir{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:0}
+  .nefndir li{font-size:.82rem;display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-top:1px dashed var(--line);padding:5px 0}
+  .nefndir li:first-child{border-top:none}
+  .nefndir li em{font-style:normal;color:var(--ink-soft);font-size:.74rem;white-space:nowrap}
+  .nefndir li em.lead{color:var(--orange-deep);font-weight:700}
+  .mp-radh{font-size:.82rem;color:var(--orange-deep);font-weight:600;margin-top:10px;background:var(--orange-soft);border-radius:8px;padding:6px 10px;display:inline-block}
 
   /* bill list */
   .bill{display:flex;gap:16px;padding:18px 0;border-top:1px solid var(--line)}
@@ -160,10 +167,10 @@
 <header class="top">
   <div class="top-inner">
     <div class="brand">
-      <div class="dot"></div>
+      <img class="logo" src="data:image/png;base64,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" alt="Viðreisn">
       <div>
         <div class="sub">Innra mælaborð</div>
-        <h1>Viðreisn · Fylgi &amp; árangur</h1>
+        <h1>Fylgi &amp; árangur</h1>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:16px">
@@ -227,6 +234,59 @@ const DATA = {
       {name:"Daði Már Kristófersson", role:"Fjármála- og efnahagsráðherra", note:"Leiðir fjárlagavinnu; helmingun halla á fyrsta ári og stefnt að hallalausum ríkissjóði 2027.", initials:"DM"},
       {name:"Hanna Katrín Friðriksson", role:"Atvinnuvegaráðherra", note:"Nýtt sameinað ráðuneyti (sjávarútvegur, landbúnaður, iðnaður). Bar fram leiðréttingu veiðigjalda.", initials:"HK"},
       {name:"Þorbjörg Sigríður Gunnlaugsdóttir", role:"Dómsmálaráðherra", note:"Fer með dóms- og löggæslumál.", initials:"ÞS"}
+    ]
+  },
+
+  /* ---- Þingflokkur: þingmenn og nefndarsetur ---- */
+  thingflokkur: {
+    formadur:"Sigmar Guðmundsson",
+    varaformadur:"María Rut Kristinsdóttir",
+    members: [
+      {name:"Þorgerður Katrín Gunnarsdóttir", kjordaemi:"Suðvesturkjördæmi", hlutverk:"Formaður Viðreisnar · utanríkisráðherra", radherra:true, nefndir:[]},
+      {name:"Sigmar Guðmundsson", kjordaemi:"Suðvesturkjördæmi", hlutverk:"Formaður þingflokks", nefndir:[
+        {n:"Utanríkismálanefnd", h:"aðalmaður"},
+        {n:"Allsherjar- og menntamálanefnd", h:"varamaður"},
+        {n:"Umhverfis- og samgöngunefnd", h:"varamaður"}
+      ]},
+      {name:"María Rut Kristinsdóttir", kjordaemi:"Norðvesturkjördæmi", hlutverk:"Varaformaður þingflokks", nefndir:[
+        {n:"Umhverfis- og samgöngunefnd", h:"formaður"},
+        {n:"Atvinnuveganefnd", h:"varamaður"},
+        {n:"Fjárlaganefnd", h:"varamaður"}
+      ]},
+      {name:"Hanna Katrín Friðriksson", kjordaemi:"Reykjavíkurkjördæmi norður", hlutverk:"Atvinnuvegaráðherra", radherra:true, nefndir:[]},
+      {name:"Þorbjörg Sigríður Gunnlaugsdóttir", kjordaemi:"Reykjavíkurkjördæmi suður", hlutverk:"Dómsmálaráðherra", radherra:true, nefndir:[]},
+      {name:"Ingvar Þóroddsson", kjordaemi:"Norðausturkjördæmi", hlutverk:"2. varaforseti Alþingis", nefndir:[
+        {n:"Atvinnuveganefnd", h:"1. varaformaður"},
+        {n:"Fjárlaganefnd", h:"aðalmaður"},
+        {n:"Stjórnskipunar- og eftirlitsnefnd", h:"varamaður"}
+      ]},
+      {name:"Grímur Grímsson", kjordaemi:"Reykjavíkurkjördæmi norður", hlutverk:"Þingmaður", nefndir:[
+        {n:"Allsherjar- og menntamálanefnd", h:"aðalmaður"},
+        {n:"Fjárlaganefnd", h:"aðalmaður"},
+        {n:"Efnahags- og viðskiptanefnd", h:"varamaður"},
+        {n:"Utanríkismálanefnd", h:"varamaður"}
+      ]},
+      {name:"Jón Gnarr", kjordaemi:"Reykjavíkurkjördæmi suður", hlutverk:"Þingmaður", nefndir:[
+        {n:"Stjórnskipunar- og eftirlitsnefnd", h:"1. varaformaður"},
+        {n:"Utanríkismálanefnd", h:"varamaður"}
+      ]},
+      {name:"Pawel Bartoszek", kjordaemi:"Reykjavíkurkjördæmi norður", hlutverk:"Þingmaður", nefndir:[
+        {n:"Utanríkismálanefnd", h:"formaður"},
+        {n:"Efnahags- og viðskiptanefnd", h:"aðalmaður"},
+        {n:"Atvinnuveganefnd", h:"varamaður"},
+        {n:"Fjárlaganefnd", h:"varamaður"}
+      ]},
+      {name:"Eiríkur Björn Björgvinsson", kjordaemi:"Suðvesturkjördæmi", hlutverk:"Þingmaður", nefndir:[
+        {n:"Atvinnuveganefnd", h:"aðalmaður"},
+        {n:"Stjórnskipunar- og eftirlitsnefnd", h:"aðalmaður"},
+        {n:"Allsherjar- og menntamálanefnd", h:"varamaður"},
+        {n:"Velferðarnefnd", h:"varamaður"}
+      ]},
+      {name:"Sandra Sigurðardóttir", kjordaemi:"Suðurkjördæmi", hlutverk:"Þingmaður", nefndir:[
+        {n:"Allsherjar- og menntamálanefnd", h:"aðalmaður"},
+        {n:"Velferðarnefnd", h:"aðalmaður"},
+        {n:"Stjórnskipunar- og eftirlitsnefnd", h:"varamaður"}
+      ]}
     ]
   },
 
@@ -401,6 +461,7 @@ const TABS = [
   {id:"yfirlit", label:"Yfirlit"},
   {id:"fylgi", label:"Fylgi"},
   {id:"rikisstjorn", label:"Ríkisstjórn"},
+  {id:"thingflokkur", label:"Þingflokkur"},
   {id:"thingmal", label:"Þingmál"},
   {id:"sveitir", label:"Sveitarstjórnir"},
   {id:"heimildir", label:"Heimildir"}
@@ -426,7 +487,7 @@ function render(){
     `<button class="tab ${i===0?'active':''}" data-tab="${t.id}">${t.label}</button>`).join('');
 
   const m = document.getElementById('main');
-  m.innerHTML = panelYfirlit()+panelFylgi()+panelRikisstjorn()+panelThingmal()+panelSveitir()+panelHeimildir();
+  m.innerHTML = panelYfirlit()+panelFylgi()+panelRikisstjorn()+panelThingflokkur()+panelThingmal()+panelSveitir()+panelHeimildir();
 
   document.querySelectorAll('.tab').forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -449,11 +510,12 @@ function panelYfirlit(){
     <div class="eyebrow">Staðan í hnotskurn · 5. júní 2026</div>
     <h2 class="sec">Viðreisn í lykilstöðu — landsmál og sveitarstjórnir</h2>
     <p class="lede">Stutt yfirlit yfir fylgi, ráðherra, þingmál og stöðu flokksins í sveitarstjórnum eftir kosningarnar 16. maí. Smelltu á flipana að ofan fyrir nánari sundurliðun.</p>
-    <div class="grid g4">
+    <div class="grid gstat">
       <div class="card stat"><div class="n">${DATA.national.headline}</div><div class="lbl">Þingfylgi á landsvísu</div><div class="meta">Prósent, feb. 2026 · 3. stærsti flokkur</div></div>
+      <div class="card stat"><div class="n">11</div><div class="lbl">Þingmenn á Alþingi</div><div class="meta">Þingflokksformaður: Sigmar Guðmundsson</div></div>
       <div class="card stat"><div class="n">4</div><div class="lbl">Ráðherrar í ríkisstjórn</div><div class="meta">Af 11 · frá 21. des. 2024</div></div>
       <div class="card stat"><div class="n">${totalSeats}</div><div class="lbl">Kjörnir fulltrúar í sveitarstjórnum</div><div class="meta">Í öllum 8 sveitarfélögunum</div></div>
-      <div class="card stat"><div class="n accent">2</div><div class="lbl">Forsetaembætti sveitarstjórna</div><div class="meta">Reykjavík &amp; Hafnarfjörður</div></div>
+      <div class="card stat"><div class="n accent">3</div><div class="lbl">Forsetaembætti sveitarstjórna</div><div class="meta">Reykjavík · Hafnarfjörður · Mosfellsbær</div></div>
     </div>
     <div class="callout" style="margin-top:24px">
       <h3>Verkefni framundan</h3>
@@ -529,6 +591,33 @@ function panelRikisstjorn(){
     <p class="lede">Ríkisstjórn ${g.parties}, mynduð ${g.formed}. Forsætisráðherra: ${g.pm}. ${g.seatsNote}</p>
     <div class="grid g2">${cards}</div>
     <div class="disclaimer" style="margin-top:22px">Til athugunar: ráðherraskipan getur breyst. Staðfestu á stjornarradid.is áður en vitnað er í tölur eða embætti opinberlega.</div>
+  </section>`;
+}
+
+/* ---- Þingflokkur ---- */
+function panelThingflokkur(){
+  const t = DATA.thingflokkur;
+  const cards = t.members.map(mp=>{
+    const init = mp.name.split(' ').slice(0,2).map(w=>w[0]).join('');
+    const body = mp.radherra
+      ? `<div class="mp-radh">Ráðherra — situr ekki í fastanefndum</div>`
+      : `<ul class="nefndir">${mp.nefndir.map(x=>`<li><span>${x.n}</span> <em class="${/formaður/.test(x.h)?'lead':''}">${x.h}</em></li>`).join('')}</ul>`;
+    return `<div class="card min">
+      <div class="av">${init}</div>
+      <div style="flex:1">
+        <h3>${mp.name}</h3>
+        <div class="role">${mp.hlutverk}</div>
+        <p style="font-size:.78rem;margin-top:-2px">${mp.kjordaemi}</p>
+        ${body}
+      </div>
+    </div>`;
+  }).join('');
+  return `<section class="panel" id="p-thingflokkur">
+    <div class="eyebrow">Þingflokkur Viðreisnar</div>
+    <h2 class="sec">11 þingmenn á Alþingi</h2>
+    <p class="lede">Formaður þingflokks er ${t.formadur} og varaformaður ${t.varaformadur}. Hér eru þingmenn flokksins, kjördæmi þeirra og seta í fastanefndum Alþingis. Ráðherrar sitja ekki í fastanefndum.</p>
+    <div class="grid g2">${cards}</div>
+    <div class="disclaimer" style="margin-top:22px">Daði Már Kristófersson, fjármála- og efnahagsráðherra, er ráðherra utan þings og situr því ekki á Alþingi sem þingmaður. Nefndaskipan getur breyst á kjörtímabilinu; staðfestu á althingi.is.</div>
   </section>`;
 }
 
