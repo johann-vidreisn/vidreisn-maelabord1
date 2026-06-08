@@ -151,6 +151,14 @@
   .fund-wk{white-space:nowrap;color:var(--ink)!important;border-top:1px solid var(--line)}
   .fund-chip{display:inline-block;background:var(--orange-soft);color:var(--orange-deep);font-weight:600;border-radius:6px;padding:4px 9px;margin:2px 3px 2px 0;font-size:.8rem;white-space:nowrap}
   .fund-time{display:block;font-weight:500;font-size:.68rem;color:var(--ink-soft);margin-top:1px}
+  .vl-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+  @media(max-width:640px){.vl-stats{grid-template-columns:1fr}}
+  .vl-stat{background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .vl-stat .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);font-weight:700;margin-bottom:6px}
+  .vl-stat .pct{font-family:Fraunces,serif;font-size:1.9rem;font-weight:600;color:var(--orange-deep);line-height:1}
+  .vl-stat .sub{font-size:.8rem;color:var(--ink-soft);margin-top:4px}
+  .vl-link{display:inline-block;background:var(--orange);color:#fff;font-weight:600;text-decoration:none;padding:11px 18px;border-radius:10px;font-size:.9rem}
+  .vl-link:hover{background:var(--orange-deep)}
   .fund-empty{color:var(--line)}
   @media(max-width:680px){.sf-note{display:none}}
   .sokn-row{padding:11px 0;border-bottom:1px solid var(--line)}
@@ -239,6 +247,7 @@
   .src .d{flex:0 0 92px;font-weight:600;color:var(--ink)}
   .src a{color:var(--orange-deep);text-decoration:none;word-break:break-word}
   .src a:hover{text-decoration:underline}
+  .src-noref{color:var(--ink);word-break:break-word}
 
   .disclaimer{font-size:.82rem;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:10px}
   footer{border-top:1px solid var(--line);padding:24px 0;font-size:.78rem;color:var(--ink-soft);text-align:center}
@@ -354,6 +363,26 @@ const DATA = {
     {name:"Akranes",       dagur:"Þriðjudagur",  vikur:"2. og 4.", timi:"17:00", wd:2, weeks:[2,4]}
   ],
 
+  /* ---- Meirihlutasáttmáli Reykjavíkur (verkefnalisti.is), staða jún. 2026 ---- */
+  verkefnalisti: {
+    total:190, lokid:2, url:"https://www.verkefnalisti.is/",
+    timabil:[
+      {t:"Næstu 100 dagar",  lokid:2, alls:31},
+      {t:"Næstu 12 mánuðir", lokid:0, alls:73},
+      {t:"Næstu 4 ár",       lokid:0, alls:86}
+    ],
+    flokkar:[
+      {t:"Æskuárin",             lokid:0, alls:41},
+      {t:"Samgöngur",            lokid:0, alls:30},
+      {t:"Rekstur og umhirða",   lokid:1, alls:30},
+      {t:"Hreyfing og útivist",  lokid:0, alls:23},
+      {t:"Atvinnulíf og menning",lokid:0, alls:20},
+      {t:"Húsnæði",              lokid:0, alls:19},
+      {t:"Efri árin",            lokid:1, alls:16},
+      {t:"Velferð",              lokid:0, alls:11}
+    ]
+  },
+
   /* ---- Reykjavík: fylgisferill Viðreisnar (kannanir, Maskína-rakning) ---- */
   rvkSaga: {
     label:"Fylgi Viðreisnar í Reykjavík — mánaðarleg rakning",
@@ -406,7 +435,35 @@ const DATA = {
     flokkar:[{p:"Viðreisn",v:94,hi:true},{p:"Samfylkingin",v:88},{p:"Miðflokkurinn",v:13},{p:"Sjálfstæðisflokkurinn",v:10}]
   },
 
+  /* ---- Spá: vegið meðaltal kannana (poll-of-polls), Viðreisn landsfylgi ---- */
+  spaLand: {
+    kannanir:[
+      {f:"Gallup þjóðarpúls", v:10.6, dags:"maí 2026",  man:1},
+      {f:"Maskína",           v:13.0, dags:"apríl 2026", man:2},
+      {f:"Prósent",           v:13.5, dags:"feb. 2026",  man:4}
+    ]
+  },
+
+  /* ---- Landsfylgi allra flokka (Prósent, feb. 2026) ---- */
+  landsfylgiAllir: {
+    heimild:"Prósent, vettvangur 21. jan – 16. feb 2026 — af þeim sem taka afstöðu",
+    flokkar:[
+      {p:"Samfylkingin", v:30.1},
+      {p:"Miðflokkurinn", v:19.6},
+      {p:"Sjálfstæðisflokkurinn", v:13.7},
+      {p:"Viðreisn", v:13.5, hi:true},
+      {p:"Flokkur fólksins", v:7.7},
+      {p:"Framsóknarflokkurinn", v:5.9},
+      {p:"Píratar", v:3.6},
+      {p:"Vinstri græn", v:3.3},
+      {p:"Sósíalistaflokkurinn", v:2.4}
+    ]
+  },
+
   issues: [
+    {topic:"Leiguþak á húsnæðismarkaði", note:"Maskína (2026): mikill meirihluti er hlynntur lögum um leiguþak á húsnæðismarkaði. Beintengt húsnæðismálum, sem eru ofarlega hjá kjósendum Viðreisnar.", segs:[{l:"Hlynnt",v:68,c:"for"},{l:"Andvíg",v:18,c:"against"},{l:"Hlutlaus",v:14,c:"neutral"}], val:"68% hlynnt · 18% andvíg"},
+    {topic:"Veggjöld á þjóðvegum", note:"Maskína (2026): um 37% landsmanna eru fylgjandi innheimtu veggjalda til að fjármagna rekstur þjóðvegakerfisins. Tengist samgöngumálum.", val:"37% fylgjandi veggjöldum"},
+    {topic:"Væntingavísitala — efnahagsstemmning", note:"Gallup (maí 2026): væntingavísitalan mælist 54,4 stig og helst lág — um 55 stigum lægri en í maí árið áður. Gildi undir 100 endurspegla svartsýni neytenda á efnahagshorfur.", val:"54,4 stig (maí 2026) · 100 = hlutlaust"},
     {topic:"Traust til ríkisstjórnarinnar", note:"Gallup þjóðarpúls (birt 4. maí 2026): 49% þeirra sem taka afstöðu styðja ríkisstjórnina og hefur stuðningurinn minnkað milli mánaða. Samanlagt fylgi stjórnarflokkanna þriggja (Samfylking, Viðreisn og Flokkur fólksins) mælist 44%.", segs:[{l:"Styðja",v:49,c:"for"},{l:"Styðja ekki",v:51,c:"against"}], val:"49% styðja ríkisstjórnina · stjórnarflokkar samtals 44%"},
     {topic:"Traust til Alþingis", note:"Árleg stofnanamæling Gallup (þjóðarpúls, feb. 2025): tæp 34% bera traust til Alþingis — aukning um nær tíu prósentustig á tveimur árum (var 24,6% í ársbyrjun 2023). Til samanburðar mældist traustið 42% fyrir hrun (2008) en féll niður í 9% árið 2010.", val:"≈34% bera traust til Alþingis — upp úr 24,6% (2023)"}
   ],
@@ -741,15 +798,43 @@ const DATA = {
 
   /* ---- Heimildir ---- */
   sources: [
+    /* Landsfylgi og kannanir */
     {d:"feb 2026", t:"Prósent — fylgi flokka á landsvísu (Viðreisn 13,5%)", u:"https://prosent.is/samfylkingin-med-mesta-fylgid-2/"},
+    {d:"2025–2026", t:"Gallup þjóðarpúls — landsfylgi flokka og stuðningur við ríkisstjórn (mánaðarleg mæling)", u:null},
+    {d:"maí 2026", t:"Gallup — Væntingavísitala (54,4 stig, neytendabjartsýni)", u:"https://www.gallup.is/"},
+    {d:"2026", t:"Maskína / Vísir — málefnakannanir (leiguþak 68%, veggjöld 37%)", u:"https://www.visir.is/t/2296"},
+
+    /* Evrópumál */
+    {d:"apr 2026", t:"Viðskiptablaðið / Gallup — meirihluti andvígur aðild að ESB", u:"https://vb.is/frettir/meirihlutinn-andvigur-adild-ad-evropusambandinu/"},
+    {d:"des 2025", t:"Evrópustraumar / Maskína — viðhorf til aðildarviðræðna eftir lýðfræði og flokkum", u:"https://evropustraumar.is/2026/01/12/vidhorf-til-adildarvidraedna-evropustraumar-greina-nidurstodur-eftir-lydfraedi-og-stjornmalaskodunum/"},
+
+    /* Ríkisstjórn og traust */
     {d:"des 2024", t:"Stjórnarráðið — ráðuneyti Kristrúnar Frostadóttur skipað", u:"https://www.stjornarradid.is/efst-a-baugi/frettir/stok-frett/2024/12/21/Fyrsta-raduneyti-Kristrunar-Frostadottur-skipad/"},
     {d:"mars 2025", t:"Stjórnarráðið — veiðigjöld í sjávarútvegi leiðrétt (Hanna Katrín)", u:"https://www.stjornarradid.is/efst-a-baugi/frettir/stok-frett/2025/03/25/Veidigjold-i-sjavarutvegi-leidrett-/"},
     {d:"des 2025", t:"Grein Kristrúnar — árangur ríkisstjórnar á fyrsta ári", u:"https://www.stjornarradid.is/gogn/raeda/2025/12/22/Samstiga-rikisstjorn-i-sigri-og-thraut-Grein-Kristrunar-Frostadottur-forsaetisradherra-a-Visi-21.-desember-2025/"},
-    {d:"maí 2026", t:"Wikipedia — Borgarstjórnarkosningar í Reykjavík 2026", u:"https://is.wikipedia.org/wiki/Borgarstj%C3%B3rnarkosningar_%C3%AD_Reykjav%C3%ADk_2026"},
-    {d:"maí 2026", t:"Hafnarfjörður — nýr meirihluti 2026–2030 (D·C·S)", u:"https://hafnarfjordur.is/nyr-meirihluti-i-hafnarfirdi-2026-2030/"},
+    {d:"feb 2025", t:"Alþingi — vaxandi traust til Alþingis (Gallup þjóðarpúls)", u:"https://www.althingi.is/tilkynningar/vaxandi-traust-til-althingis"},
+
+    /* Sveitarstjórnarúrslit 16. maí 2026 */
+    {d:"maí 2026", t:"Kosningasaga — úrslit sveitarstjórnarkosninga 2026 (öll átta sveitarfélögin)", u:"https://kosningasaga.wordpress.com/sveitarstjornarkosningar/"},
     {d:"maí 2026", t:"Vísir — lokatölur í Kópavogi og Reykjavík", u:"https://www.visir.is/g/20262878959d/loka-tolur-i-kopa-vogi-as-dis-med-hreinan-meiri-hluta"},
     {d:"maí 2026", t:"Vísir — sveitarstjórnarkosningar 2026 (Ísafjörður o.fl.)", u:"https://www.visir.is/p/sveitarstjornarkosningar2026"},
-    {d:"jún 2026", t:"DV — 190 verkefni á verkefnalista borgarstjórnarmeirihluta", u:"https://www.dv.is/frettir/2026/6/2/190-verkefni-verkefnalista-meirihluta-borgarstjornar-thessu-aetlar-hann-ad-breyta-borginni/"}
+    {d:"maí 2026", t:"Hafnarfjörður — nýr meirihluti 2026–2030 (D·C·S)", u:"https://hafnarfjordur.is/nyr-meirihluti-i-hafnarfirdi-2026-2030/"},
+    {d:"maí 2026", t:"Wikipedia — Borgarstjórnarkosningar í Reykjavík 2026", u:"https://is.wikipedia.org/wiki/Borgarstj%C3%B3rnarkosningar_%C3%AD_Reykjav%C3%ADk_2026"},
+    {d:"jún 2026", t:"DV — 190 verkefni á verkefnalista borgarstjórnarmeirihluta", u:"https://www.dv.is/frettir/2026/6/2/190-verkefni-verkefnalista-meirihluta-borgarstjornar-thessu-aetlar-hann-ad-breyta-borginni/"},
+    {d:"jún 2026", t:"Verkefnalisti.is — meirihlutasáttmáli Reykjavíkur (D·C·B), rauntímastaða 190 verkefna", u:"https://www.verkefnalisti.is/"},
+
+    /* Fundartímar bæjar- og borgarstjórna */
+    {d:"fundir", t:"Reykjavík — samþykkt um stjórn borgarinnar og fundarsköp (kl. 14:00)", u:"https://island.is/stjornartidindi/nr/10dc618d-e10a-4d43-b77c-9b6befd68202"},
+    {d:"fundir", t:"Hafnarfjörður — bæjarstjórn (kl. 14:00)", u:"https://hafnarfjordur.is/stjornsysla/baejarstjorn/"},
+    {d:"fundir", t:"Kópavogur — bæjarstjórn (kl. 16:00)", u:"https://www.kopavogur.is/is/stjornsysla/baejarstjorn/baejarstjorn-kopavogs"},
+    {d:"fundir", t:"Mosfellsbær — fundir bæjarstjórnar (kl. 16:30)", u:"https://mos.is/stjornsysla/baejarstjorn-rad-og-nefndir/fundir-baejarstjornar/"},
+    {d:"fundir", t:"Árborg — samþykkt um stjórn og fundarsköp (kl. 17:00)", u:"https://island.is/stjornartidindi/nr/24310a11-e187-402f-a7ef-47671320a74a"},
+    {d:"fundir", t:"Múlaþing — sveitarstjórn (kl. 13:00)", u:"https://www.mulathing.is/is/stjornsysla/sveitarstjorn-rad-og-stjornir/sveitarstjorn"},
+    {d:"fundir", t:"Ísafjarðarbær — bæjarstjórn (kl. 17:00)", u:"https://www.isafjordur.is/is/moya/news/571-fundur-baejarstjornar-isafjardarbaejar"},
+    {d:"fundir", t:"Akranes — bæjarstjórn (kl. 17:00)", u:"https://www.akranes.is/stjornsysla/stjornkerfi/baejarstjorn-akraness"},
+
+    /* Þingmál */
+    {d:"2024–2026", t:"Alþingi — þingmál og ferlar (156. og 157. löggjafarþing)", u:"https://www.althingi.is/thingstorf/thingmalalistar-eftir-thingum/"}
   ]
 };
 
@@ -859,6 +944,16 @@ function panelYfirlit(){
 /* ---- Fylgi (þjóðfylgi) ---- */
 function panelFylgi(){
   const n = DATA.national;
+  const laf = DATA.landsfylgiAllir;
+  const lafMax = Math.max(...laf.flokkar.map(f=>f.v));
+  const lafBars = laf.flokkar.map(f=>`<div class="snap-row ${f.hi?'hi':''}"><div class="snap-p">${f.p}</div><div class="snap-track"><div class="snap-fill" style="width:${(f.v/lafMax*100).toFixed(1)}%"></div></div><div class="snap-val">${f.v.toString().replace('.',',')}%</div></div>`).join('');
+
+  const sp = DATA.spaLand;
+  const spw = k => 1/(k.man+1);
+  const spSumW = sp.kannanir.reduce((a,k)=>a+spw(k),0);
+  const spVal = sp.kannanir.reduce((a,k)=>a+k.v*spw(k),0)/spSumW;
+  const spStr = spVal.toFixed(1).replace('.',',');
+  const spRows = sp.kannanir.map(k=>`<div class="spa-row"><span class="f">${k.f}</span><span class="d">${k.dags}</span><span class="v">${k.v.toString().replace('.',',')}%</span><span class="w">vægi ${spw(k).toFixed(2).replace('.',',')}</span></div>`).join('');
   const issues = DATA.issues.map(i=>`
     <div class="bill" style="border-top:1px solid var(--line)">
       <div class="yr" style="flex:0 0 0"></div>
@@ -903,6 +998,11 @@ function panelFylgi(){
         ${lineChart(DATA.fylgiSaga)}
         <p class="bar-sub" style="margin-top:8px">Ferningur = kjörfylgi (alþingiskosningar nóv. 2024). Hringir = skoðanakannanir, með heimild undir hverjum punkti. Blanda af Gallup þjóðarpúlsi og Prósent.</p>
       </div>
+    </div>
+    <div class="card" style="margin-bottom:26px">
+      <div class="eyebrow" style="margin-bottom:4px">Landsfylgi — allir flokkar</div>
+      <p class="bar-sub" style="margin:0 0 14px">${laf.heimild}</p>
+      ${lafBars}
     </div>
     <div class="eyebrow">Sóknarfæri</div>
     <h2 class="sec" style="font-size:1.4rem">Hvert getum við sótt fylgi?</h2>
@@ -1162,6 +1262,16 @@ function panelSveitir(){
     return `<tr><th class="fund-wk">${wk}. vika</th>${cells}</tr>`;
   }).join('');
 
+  const vl = DATA.verkefnalisti;
+  const vlTimabil = vl.timabil.map(t=>{
+    const pct = Math.round(t.lokid/t.alls*100);
+    return `<div class="vl-stat"><div class="lbl">${t.t}</div><div class="pct">${pct}%</div><div class="sub">${t.lokid} af ${t.alls} lokið</div></div>`;
+  }).join('');
+  const vlFlokkar = vl.flokkar.map(f=>{
+    const pct = Math.round(f.lokid/f.alls*100);
+    return `<div class="snap-row"><div class="snap-p">${f.t}</div><div class="snap-track"><div class="snap-fill" style="width:${pct}%"></div></div><div class="snap-val">${f.lokid}/${f.alls}</div></div>`;
+  }).join('');
+
   return `<section class="panel" id="p-sveitir">
     <div class="eyebrow">Sveitarstjórnarkosningar · 16. maí 2026</div>
     <h2 class="sec">Staða Viðreisnar í sveitarfélögunum</h2>
@@ -1177,16 +1287,25 @@ function panelSveitir(){
       </table></div>
       <p class="bar-sub" style="margin-top:12px">Fundartímar eru reglulegir tímar skv. samþykktum/fundarboðum hvers sveitarfélags (geta vikið til). Múlaþing fundar aðeins fyrsta miðvikudag; önnur sveitarfélög funda tvisvar í mánuði. Mánudagar og föstudagar eru fundalausir. Árborg miðar við kl. 17:00 skv. samþykkt — nýlegir fundir hafa þó hafist kl. 16:00.</p>
     </div>
+    <div class="eyebrow" style="margin-top:34px">Reykjavík</div>
+    <h2 class="sec" style="font-size:1.4rem">Meirihlutasáttmáli — verkefnalisti</h2>
+    <p class="lede">Meirihluti Sjálfstæðisflokks, Viðreisnar og Framsóknar (D+C+B) setti fram ${vl.total} verkefni í sáttmála sínum, flokkuð eftir tímalínu. Framvindan er rakin opinberlega; hér er staðan í júní 2026 (${vl.lokid} verkefni þegar lokið).</p>
+    <div class="vl-stats">${vlTimabil}</div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="eyebrow" style="margin-bottom:12px">Verkefni eftir málaflokki</div>
+      ${vlFlokkar}
+    </div>
+    <a class="vl-link" href="${vl.url}" target="_blank" rel="noopener">Skoða verkefnalistann í heild og rauntímastöðu á verkefnalisti.is →</a>
   </section>`;
 }
 
 /* ---- Heimildir ---- */
 function panelHeimildir(){
-  const list = DATA.sources.map(s=>`<div class="src"><div class="d">${s.d}</div><a href="${s.u}" target="_blank" rel="noopener">${s.t}</a></div>`).join('');
+  const list = DATA.sources.map(s=>`<div class="src"><div class="d">${s.d}</div>${s.u?`<a href="${s.u}" target="_blank" rel="noopener">${s.t}</a>`:`<span class="src-noref">${s.t}</span>`}</div>`).join('');
   return `<section class="panel" id="p-heimildir">
     <div class="eyebrow">Heimildir &amp; aðferð</div>
     <h2 class="sec">Hvaðan koma tölurnar</h2>
-    <p class="lede">Allar tölur eru frá opinberum og fréttaheimildum, með dagsetningu. Mælaborðið er augnabliksmynd — fylgi og embætti breytast.</p>
+    <p class="lede">Tölurnar koma frá opinberum heimildum og fréttamiðlum, með dagsetningu. Mánaðarmælingar (t.d. Gallup þjóðarpúls) eru almenn tilvísun án einnar slóðar. Mælaborðið er augnabliksmynd — fylgi og embætti breytast.</p>
     <div class="card" style="margin-bottom:18px">${list}</div>
     <div class="disclaimer">
       <b>Aðferð:</b> Fylgistölur eru frá einstökum könnunum tiltekinna fyrirtækja og endurspegla ekki vegið meðaltal. Sveitarstjórnartölur miðast við úrslit 16. maí 2026 og meirihlutamyndanir sem tilkynntar voru síðustu vikuna í maí. Öll átta sveitarfélögin sem hér eru rakin eru staðfest. Uppfærðu <code>DATA</code>-hlutann í skránni til að halda mælaborðinu lifandi.
