@@ -264,6 +264,16 @@
   .bar.q .v{color:var(--ink-soft)}
   .bar-lbl{margin-top:10px;font-size:.8rem;font-weight:600;text-align:center}
   .bar-sub{font-size:.7rem;color:var(--ink-soft)}
+  .sv-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .sv-row:last-child{border-bottom:none}
+  .sv-name{flex:0 0 116px;font-weight:600;font-size:.85rem}
+  .sv-barwrap{flex:1;min-width:130px;display:flex;align-items:center;gap:8px}
+  .sv-bar{height:18px;background:linear-gradient(90deg,var(--orange),var(--orange-deep));border-radius:0 5px 5px 0;min-width:3px}
+  .sv-pct{font-weight:700;font-size:.82rem;white-space:nowrap}
+  .sv-seats{flex:0 0 auto;display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .sv-seats .seats{flex-wrap:wrap;max-width:160px;justify-content:flex-end;margin-left:0}
+  .sv-frac{font-size:.74rem;color:var(--ink-soft)}
+  @media(max-width:640px){.sv-name{flex:0 0 100%}.sv-seats{margin-left:auto}}
 
   .callout{background:linear-gradient(135deg,var(--orange-soft),#fff);border:1px solid var(--orange-soft);border-radius:16px;padding:20px 22px;margin:8px 0 26px}
   .callout h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;margin-bottom:4px}
@@ -447,6 +457,7 @@ const DATA = {
     {name:"Akranes",       pct:10.67, dpp:10.67, seats:1, dseat:1,  total:9,  status:"opp", note:"Náði manni inn í fyrsta sinn. Minnihluti."},
     {name:"Mosfellsbær",   pct:10.13, dpp:2.24,  seats:1, dseat:0,  total:11, status:"maj", note:"Meirihluti með Sjálfstæðisflokki (D+C)."},
     {name:"Kópavogur",     pct:10.10, dpp:-0.57, seats:1, dseat:0,  total:11, status:"opp", note:"Minnihluti — Sjálfstæðisflokkur með hreinan meirihluta (6 af 11)."},
+    {name:"Árborg",        pct:7.63,  dpp:7.63,  seats:1, dseat:1,  total:11, status:"opp", note:"Náði manni inn í fyrsta sinn. Minnihluti — Sjálfstæðisflokkur með hreinan meirihluta (6 af 11)."}
   ],
 
   /* ---- Fundadagatal bæjar-/borgarstjórna ---- */
@@ -947,7 +958,7 @@ const DATA = {
 const TABS = [
   {id:"yfirlit", label:"Yfirlit"},
   {id:"fylgi", label:"Fylgi"},
-  {id:"sveitarfylgi", label:"Sveitarfylgi"},
+  {id:"sveitarfylgi", label:"Sveitarstjórnarfylgi"},
   {id:"rikisstjorn", label:"Ríkisstjórn"},
   {id:"thingflokkur", label:"Þingflokkur"},
   {id:"thingmal", label:"Þingmál"},
@@ -1157,10 +1168,14 @@ function panelFylgi(){
 /* ---- Sveitarfylgi (kosningaúrslit 16. maí 2026) ---- */
 function panelSveitarfylgi(){
   const rows = DATA.sveitarUrslit;
-  const maxSeats = Math.max(...rows.map(r=>r.seats||0),3);
+  const maxPct = Math.max(...rows.map(r=>r.pct));
   const bars = rows.map(r=>{
-    const h=(r.seats/maxSeats)*100;
-    return `<div class="bar-col"><div class="bar" data-h="${h}" style="height:0"><span class="v">${r.seats}</span></div><div class="bar-lbl">${r.name}</div><div class="bar-sub">af ${r.total}</div></div>`;
+    const w=(r.pct/maxPct*100).toFixed(1);
+    return `<div class="sv-row">
+      <div class="sv-name">${r.name}</div>
+      <div class="sv-barwrap"><div class="sv-bar" style="width:${w}%"></div><span class="sv-pct">${r.pct.toString().replace('.',',')}%</span></div>
+      <div class="sv-seats">${seatsDots(r.seats, r.total)}<span class="sv-frac">${r.seats} af ${r.total}</span></div>
+    </div>`;
   }).join('');
   const fmtPct = v => v.toString().replace('.',',')+'%';
   const fmtD = v => (v>0?'+':v<0?'−':'±')+Math.abs(v).toFixed(1).replace('.',',');
@@ -1192,8 +1207,9 @@ function panelSveitarfylgi(){
     <h2 class="sec">Úrslit Viðreisnar í sveitarfélögunum</h2>
     <p class="lede">Þar sem kannanir eftir kosningarnar liggja ekki fyrir er stuðst við kosningaúrslitin sjálf. Viðreisn fékk ${totalSeats} kjörna fulltrúa í öllum átta sveitarfélögunum, bætti við sig sæti í fimm þeirra — þar af fyrsta fulltrúa sínum á Akranesi, í Árborg og Ísafjarðarbæ — og fer með forystu (meirihluta eða bæjarstjóra) í ${leadCount} þeirra. Hæsta hlutfallið er í Ísafjarðarbæ (16,0%).</p>
     <div class="card" style="margin-bottom:24px">
-      <div class="eyebrow" style="margin-bottom:4px">Kjörnir fulltrúar eftir sveitarfélagi</div>
-      <div class="bars">${bars}</div>
+      <div class="eyebrow" style="margin-bottom:4px">Fylgi og fulltrúar eftir sveitarfélagi</div>
+      <p class="bar-sub" style="margin:0 0 14px">Súla = fylgishlutfall. Punktar = öll sæti í ráðinu; fyllt sæti eru fulltrúar Viðreisnar.</p>
+      <div class="sv-chart">${bars}</div>
     </div>
     <div class="card">
       <div style="overflow-x:auto"><table class="sf-table">
