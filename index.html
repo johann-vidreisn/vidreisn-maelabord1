@@ -111,6 +111,10 @@
   .tm-ghead h3{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;letter-spacing:-.01em}
   .tm-count{font-size:.74rem;color:var(--ink-soft);white-space:nowrap}
   .tm-gsub{font-size:.8rem;color:var(--orange-deep);font-weight:600;margin:4px 0 6px}
+  .sm-roles{font-size:.78rem;color:var(--ink-soft);margin:0 0 8px}
+  .sm-item{cursor:default}
+  .tm-type.sm-ok{background:#e3f0e6;color:#2f7d4f}
+  .tm-type.sm-pend{background:var(--paper-2);color:var(--ink-soft)}
   .tm-list{display:flex;flex-direction:column}
   .tm-item{display:grid;grid-template-columns:104px 1fr auto;gap:12px;align-items:baseline;padding:8px 6px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);transition:background .12s}
   .tm-item:hover{background:var(--paper-2)}
@@ -159,6 +163,28 @@
   .vl-stat .sub{font-size:.8rem;color:var(--ink-soft);margin-top:4px}
   .vl-link{display:inline-block;background:var(--orange);color:#fff;font-weight:600;text-decoration:none;padding:11px 18px;border-radius:10px;font-size:.9rem}
   .vl-link:hover{background:var(--orange-deep)}
+  .spa-big{font-family:Fraunces,serif;font-size:2.4rem;font-weight:600;color:var(--orange-deep);line-height:1}
+  .spa-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:.85rem}
+  .spa-row .f{flex:1;font-weight:600;min-width:0}
+  .spa-row .d{color:var(--ink-soft);font-size:.78rem;white-space:nowrap}
+  .spa-row .v{font-weight:700;width:52px;text-align:right}
+  .spa-row .w{color:var(--ink-soft);font-size:.74rem;width:78px;text-align:right;white-space:nowrap}
+  .rv-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:.82rem}
+  .rv-name{flex:0 0 150px;text-align:right;line-height:1.15}
+  .rv-name.v{color:var(--orange-deep);font-weight:700}
+  .rv-role{display:block;font-weight:400;font-size:.66rem;color:var(--ink-soft)}
+  .rv-track{flex:1;display:flex;align-items:center;min-width:60px}
+  .rv-neg{flex:1;display:flex;justify-content:flex-end}
+  .rv-pos{flex:1;display:flex;justify-content:flex-start;border-left:2px solid var(--line)}
+  .rv-bar-neg{height:14px;background:#6b6258;border-radius:3px 0 0 3px}
+  .rv-bar-pos{height:14px;background:var(--orange);border-radius:0 3px 3px 0}
+  .rv-net{flex:0 0 44px;text-align:right;font-weight:700;font-size:.8rem}
+  .rv-net.pos{color:#2f7d4f}
+  .rv-net.neg{color:#b03a2e}
+  .rv-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.74rem;color:var(--ink-soft);margin-bottom:14px}
+  .rv-sw{display:inline-block;width:11px;height:11px;border-radius:2px;vertical-align:-1px;margin-right:4px}
+  .rv-sw.neg{background:#6b6258}
+  .rv-sw.pos{background:var(--orange)}
   .fund-empty{color:var(--line)}
   @media(max-width:680px){.sf-note{display:none}}
   .sokn-row{padding:11px 0;border-bottom:1px solid var(--line)}
@@ -340,6 +366,78 @@ const DATA = {
     ]
   },
 
+  /* ---- Frammistaða ráðherra (Maskína, mars 2026) — best/verst ---- */
+  radherraframmistada: {
+    heimild:"Maskína, 25.–31. mars 2026 (n=969) — spurt hver hafi staðið sig best og verst á kjörtímabilinu. Raðað eftir nettóstöðu (best − verst).",
+    radherrar:[
+      {n:"Kristrún Frostadóttir", r:"forsætis · Samfylking", best:21.1, verst:7.8},
+      {n:"Þorbjörg Sigríður", r:"dómsmála · Viðreisn", best:10.3, verst:1.0, v:true},
+      {n:"Jóhann Páll Jóhannsson", r:"umhverfis/orku · Samfylking", best:6.4, verst:2.9},
+      {n:"Logi Einarsson", r:"menning/háskóla · Samfylking", best:2.7, verst:2.0},
+      {n:"Hanna Katrín Friðriksson", r:"atvinnuvega · Viðreisn", best:1.9, verst:1.4, v:true},
+      {n:"Ragnar Þór Ingólfsson", r:"félags/húsnæðis · Flokkur fólksins", best:1.7, verst:1.9},
+      {n:"Daði Már Kristófersson", r:"fjármála · Viðreisn", best:2.8, verst:6.0, v:true},
+      {n:"Alma Möller", r:"heilbrigðis · Samfylking", best:2.2, verst:5.9},
+      {n:"Eyjólfur Ármannsson", r:"innviða · Flokkur fólksins", best:1.3, verst:8.7},
+      {n:"Þorgerður Katrín", r:"utanríkis · Viðreisn", best:6.7, verst:19.8, v:true},
+      {n:"Inga Sæland", r:"mennta/barna · Flokkur fólksins", best:10.5, verst:24.6}
+    ]
+  },
+
+  /* ---- Sveitarstjórnarmál: samþykkt mál í meirihlutasveitarfélögum Viðreisnar (jún. 2026) ---- */
+  sveitarMal: {
+    note:"Nýju sveitarstjórnirnar tóku formlega við í byrjun júní 2026 og ganga svo beint í sumarleyfi (júlí–ágúst). Samþykkt mál eru því enn að mestu skipulagsleg — kjör embætta, kosning í ráð og nefndir og kynning málefnasamninga. Eiginlegur málaflutningur hefst að nýju í haust með fjárhagsáætlunum. Listinn nær til sveitarfélaganna fjögurra þar sem Viðreisn á aðild að meirihluta.",
+    sveitarfelog:[
+      {
+        name:"Reykjavík",
+        meiri:"Sjálfstæðisflokkur, Viðreisn og Framsókn (D+C+B) · 12 af 23",
+        hlutverk:"Borgarstjóri Hildur Björg Björnsdóttir (D) · forseti borgarstjórnar Björg Magnúsdóttir (Viðreisn)",
+        fundur:"1. fundur kjörtímabils · 2. júní 2026",
+        mal:[
+          {t:"Kjör borgarstjóra og forseta borgarstjórnar", n:"Hildur Björg Björnsdóttir borgarstjóri; Björg Magnúsdóttir (Viðreisn) forseti", s:"samþykkt"},
+          {t:"Stýrihópur um hagræðingar og stjórnkerfisbreytingar", n:"Róbert Ragnarsson stýrir vinnunni", s:"samþykkt"},
+          {t:"Tólf tillögur meirihlutans lagðar fram", n:"m.a. endurskoðun samgöngusáttmála, deiliskipulag við Suðurlandsbraut, lengri opnunartími sundlauga, samstarf við atvinnulíf um leikskóla og daggæslu, og niðurfelling fánareglna", s:"lagt fram"}
+        ]
+      },
+      {
+        name:"Hafnarfjörður",
+        meiri:"Sjálfstæðisflokkur, Viðreisn og Samfylking (D+C+S) · 7 af 11",
+        hlutverk:"Bæjarstjóri Þórður Þórarinsson · forseti bæjarstjórnar úr röðum Viðreisnar · formaður bæjarráðs Orri Björnsson (D)",
+        fundur:"1. fundur kjörtímabils · 3. júní 2026",
+        mal:[
+          {t:"Ráðning bæjarstjóra", n:"Þórður Þórarinsson ráðinn bæjarstjóri", s:"samþykkt"},
+          {t:"Kjör forseta bæjarstjórnar og kosning í ráð og nefndir", n:"forseti úr röðum Viðreisnar", s:"samþykkt"},
+          {t:"Málefnasamningur „Frelsi, ábyrgð, velferð og lífsgæði“", n:"m.a. rekstrar- og stjórnsýsluúttekt, óbreytt útsvar út kjörtímabilið og lækkun skulda án þjónustuskerðingar", s:"kynntur"}
+        ]
+      },
+      {
+        name:"Mosfellsbær",
+        meiri:"Sjálfstæðisflokkur og Viðreisn (D+C) · 6 af 11",
+        hlutverk:"Bæjarstjóri Hilmar Gunnarsson (D) · forseti bæjarstjórnar Gylfi Þór Þorsteinsson (Viðreisn) · formaður bæjarráðs Jana Katrín Knútsdóttir (D)",
+        fundur:"Nýtt kjörtímabil · fyrsti fundur í júní 2026",
+        mal:[
+          {t:"Ráðning bæjarstjóra og kjör forseta bæjarstjórnar", n:"Hilmar Gunnarsson bæjarstjóri; Gylfi Þór Þorsteinsson (Viðreisn) forseti bæjarstjórnar", s:"samþykkt"},
+          {t:"Kosning í ráð og nefndir", n:"", s:"samþykkt"},
+          {t:"Málefnasamningur D og C", n:"byggir á gildum frelsis og ábyrgðar með áherslu á ábyrgan rekstur og gegnsæja stjórnsýslu", s:"kynntur"}
+        ]
+      },
+      {
+        name:"Ísafjarðarbær",
+        meiri:"Framsókn og óháðir og Viðreisn · meirihluti (5 af 9)",
+        hlutverk:"Bæjarstjóri Gylfi Ólafsson (Viðreisn) · forseti bæjarstjórnar Elísabet Samúelsdóttir · formaður bæjarráðs Kristján Þór Kristjánsson",
+        fundur:"572. fundur · 4. júní 2026",
+        mal:[
+          {t:"Ráðningarsamningur bæjarstjóra samþykktur", n:"Gylfi Ólafsson (Viðreisn) tók við lyklavöldum 5. júní", s:"samþykkt"},
+          {t:"Kjör forseta bæjarstjórnar og kosning í fastanefndir", n:"Elísabet Samúelsdóttir forseti bæjarstjórnar", s:"samþykkt"},
+          {t:"Sumarleyfi bæjarstjórnar júlí–ágúst 2026", n:"næsti fundur að loknu sumarleyfi 3. september 2026", s:"samþykkt"},
+          {t:"Breyting á 8. og 48. gr. samþykkta um stjórn", n:"fyrri umræða", s:"samþykkt"},
+          {t:"Stjórn Fasteigna Ísafjarðarbæjar ehf. 2026–2030", n:"Kristján Þór Kristjánsson, Svanfríður Bergvinsdóttir og Gylfi Ólafsson", s:"samþykkt"},
+          {t:"Málefnasamningur Framsóknar/óháðra og Viðreisnar (34 atriði)", n:"áhersla á skólamál og samgöngur; stækkun skólahúsnæðis og áframhaldandi lækkun skulda", s:"kynntur"}
+        ]
+      }
+    ]
+  },
+
   /* ---- Sveitarstjórnarkosningar 16. maí 2026: úrslit Viðreisnar ---- */
   sveitarUrslit: [
     {name:"Ísafjarðarbær", pct:16.01, dpp:16.01, seats:1, dseat:1,  total:9,  status:"maj", note:"Hæsta hlutfall Viðreisnar. Bæjarstjóri Gylfi Ólafsson (C með Framsókn og óháðum)."},
@@ -439,24 +537,24 @@ const DATA = {
   spaLand: {
     kannanir:[
       {f:"Gallup þjóðarpúls", v:10.6, dags:"maí 2026",  man:1},
-      {f:"Maskína",           v:13.0, dags:"apríl 2026", man:2},
+      {f:"Maskína",           v:12.8, dags:"apríl 2026", man:2},
       {f:"Prósent",           v:13.5, dags:"feb. 2026",  man:4}
     ]
   },
 
-  /* ---- Landsfylgi allra flokka (Prósent, feb. 2026) ---- */
+  /* ---- Landsfylgi allra flokka (Maskína, mars–apríl 2026 — nýjasta heildarmæling) ---- */
   landsfylgiAllir: {
-    heimild:"Prósent, vettvangur 21. jan – 16. feb 2026 — af þeim sem taka afstöðu",
+    heimild:"Maskína, vettvangur 25. mars – 16. apríl 2026 — af þeim sem taka afstöðu (n=1.786)",
     flokkar:[
-      {p:"Samfylkingin", v:30.1},
-      {p:"Miðflokkurinn", v:19.6},
-      {p:"Sjálfstæðisflokkurinn", v:13.7},
-      {p:"Viðreisn", v:13.5, hi:true},
-      {p:"Flokkur fólksins", v:7.7},
-      {p:"Framsóknarflokkurinn", v:5.9},
-      {p:"Píratar", v:3.6},
-      {p:"Vinstri græn", v:3.3},
-      {p:"Sósíalistaflokkurinn", v:2.4}
+      {p:"Samfylkingin", v:27.7},
+      {p:"Sjálfstæðisflokkurinn", v:18.1},
+      {p:"Miðflokkurinn", v:16.4},
+      {p:"Viðreisn", v:12.8, hi:true},
+      {p:"Framsóknarflokkurinn", v:7.2},
+      {p:"Flokkur fólksins", v:5.8},
+      {p:"Píratar", v:4.7},
+      {p:"Vinstri græn", v:4.3},
+      {p:"Sósíalistaflokkurinn", v:3.0}
     ]
   },
 
@@ -801,6 +899,8 @@ const DATA = {
     /* Landsfylgi og kannanir */
     {d:"feb 2026", t:"Prósent — fylgi flokka á landsvísu (Viðreisn 13,5%)", u:"https://prosent.is/samfylkingin-med-mesta-fylgid-2/"},
     {d:"2025–2026", t:"Gallup þjóðarpúls — landsfylgi flokka og stuðningur við ríkisstjórn (mánaðarleg mæling)", u:null},
+    {d:"apríl 2026", t:"Maskína — mánaðarleg fylgismæling á landsvísu (Þjóðgátt, n=1.786)", u:"https://maskina.is/sjalfstaedisflokkurinn-a-uppleid-samfylkingin-afram-staerst-flokka-a-landsvisu/"},
+    {d:"mars 2026", t:"Maskína — frammistaða ráðherra á kjörtímabilinu (best/verst, n=969)", u:"https://maskina.is/flestum-thykir-kristrun-hafa-stadid-sig-best-allra-radherra-a-kjortimabilinu/"},
     {d:"maí 2026", t:"Gallup — Væntingavísitala (54,4 stig, neytendabjartsýni)", u:"https://www.gallup.is/"},
     {d:"2026", t:"Maskína / Vísir — málefnakannanir (leiguþak 68%, veggjöld 37%)", u:"https://www.visir.is/t/2296"},
 
@@ -822,6 +922,9 @@ const DATA = {
     {d:"maí 2026", t:"Wikipedia — Borgarstjórnarkosningar í Reykjavík 2026", u:"https://is.wikipedia.org/wiki/Borgarstj%C3%B3rnarkosningar_%C3%AD_Reykjav%C3%ADk_2026"},
     {d:"jún 2026", t:"DV — 190 verkefni á verkefnalista borgarstjórnarmeirihluta", u:"https://www.dv.is/frettir/2026/6/2/190-verkefni-verkefnalista-meirihluta-borgarstjornar-thessu-aetlar-hann-ad-breyta-borginni/"},
     {d:"jún 2026", t:"Verkefnalisti.is — meirihlutasáttmáli Reykjavíkur (D·C·B), rauntímastaða 190 verkefna", u:"https://www.verkefnalisti.is/"},
+    {d:"jún 2026", t:"Ísafjarðarbær — 572. fundur bæjarstjórnar (fyrsti fundur kjörtímabilsins)", u:"https://www.isafjordur.is/is/moya/news/572-fundur-baejarstjornar-isafjardarbaejar"},
+    {d:"jún 2026", t:"Hafnarfjörður — fyrsti fundur nýrrar bæjarstjórnar (3. júní)", u:"https://hafnarfjordur.is/fyrsti-fundur-baejarstjornarinnar-eftir-kosningar-fra/"},
+    {d:"maí 2026", t:"Mosfellsbær — nýr meirihluti Sjálfstæðisflokks og Viðreisnar", u:"https://xd.is/2026/05/29/sjalfstaedisflokkurinn-og-vidreisn-mynda-meirihluta-i-mosfellsbae/"},
 
     /* Fundartímar bæjar- og borgarstjórna */
     {d:"fundir", t:"Reykjavík — samþykkt um stjórn borgarinnar og fundarsköp (kl. 14:00)", u:"https://island.is/stjornartidindi/nr/10dc618d-e10a-4d43-b77c-9b6befd68202"},
@@ -848,6 +951,7 @@ const TABS = [
   {id:"rikisstjorn", label:"Ríkisstjórn"},
   {id:"thingflokkur", label:"Þingflokkur"},
   {id:"thingmal", label:"Þingmál"},
+  {id:"sveitarmal", label:"Sveitarstjórnarmál"},
   {id:"sveitir", label:"Sveitarstjórnir"},
   {id:"heimildir", label:"Heimildir"}
 ];
@@ -904,7 +1008,7 @@ function render(){
     `<button class="tab ${i===0?'active':''}" data-tab="${t.id}">${t.label}</button>`).join('');
 
   const m = document.getElementById('main');
-  m.innerHTML = panelYfirlit()+panelFylgi()+panelSveitarfylgi()+panelRikisstjorn()+panelThingflokkur()+panelThingmal()+panelSveitir()+panelHeimildir();
+  m.innerHTML = panelYfirlit()+panelFylgi()+panelSveitarfylgi()+panelRikisstjorn()+panelThingflokkur()+panelThingmal()+panelSveitarMal()+panelSveitir()+panelHeimildir();
 
   document.querySelectorAll('.tab').forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -1003,6 +1107,15 @@ function panelFylgi(){
       <div class="eyebrow" style="margin-bottom:4px">Landsfylgi — allir flokkar</div>
       <p class="bar-sub" style="margin:0 0 14px">${laf.heimild}</p>
       ${lafBars}
+    </div>
+    <div class="card" style="margin-bottom:26px">
+      <div class="eyebrow" style="margin-bottom:8px">Spá — vegið meðaltal kannana · Viðreisn landsfylgi</div>
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap">
+        <span class="spa-big">≈ ${spStr}%</span>
+        <span class="bar-sub">blanda af Gallup, Maskínu og Prósent, vegin eftir nýleika</span>
+      </div>
+      ${spRows}
+      <p class="bar-sub" style="margin-top:12px">Formúla: hver könnun fær vægi 1 ⁄ (fjöldi mánaða frá mælingu + 1), svo nýjustu tölur vega þyngst. Spá = Σ(fylgi × vægi) ⁄ Σvægi. Einföld „poll-of-polls" nálgun til viðmiðunar — ekki opinber kosningaspá. Uppfærist sjálfkrafa þegar nýrri mælingum er bætt í <code>spaLand</code>.</p>
     </div>
     <div class="eyebrow">Sóknarfæri</div>
     <h2 class="sec" style="font-size:1.4rem">Hvert getum við sótt fylgi?</h2>
@@ -1124,6 +1237,21 @@ function panelRikisstjorn(){
         <p>${mi.note}</p>
       </div>
     </div>`).join('');
+
+  const rf = DATA.radherraframmistada;
+  const rfMax = 25;
+  const rfRows = rf.radherrar.map(m=>{
+    const net = m.best - m.verst;
+    const netStr = (net>=0?'+':'−')+Math.abs(net).toFixed(1).replace('.',',');
+    return `<div class="rv-row">
+      <div class="rv-name ${m.v?'v':''}">${m.n}<span class="rv-role">${m.r}</span></div>
+      <div class="rv-track">
+        <div class="rv-neg"><div class="rv-bar-neg" style="width:${(m.verst/rfMax*100).toFixed(0)}%"></div></div>
+        <div class="rv-pos"><div class="rv-bar-pos" style="width:${(m.best/rfMax*100).toFixed(0)}%"></div></div>
+      </div>
+      <div class="rv-net ${net>=0?'pos':'neg'}">${netStr}</div>
+    </div>`;
+  }).join('');
   return `<section class="panel" id="p-rikisstjorn">
     <div class="eyebrow">Ráðherrar Viðreisnar</div>
     <h2 class="sec">Viðreisn í ríkisstjórn</h2>
@@ -1136,6 +1264,14 @@ function panelRikisstjorn(){
       <div class="eyebrow" style="margin-bottom:8px">${DATA.rikisstjornStudningur.label}</div>
       ${lineChart(DATA.rikisstjornStudningur)}
       <p class="bar-sub" style="margin-top:8px">Lesið af þjóðarpúls-grafi Gallup (Stuðningur við ríkisstjórn, jan. 2025 – maí 2026). Nýjasta gildi staðfest: 49% (Gallup, birt 4. maí 2026).</p>
+    </div>
+    <div class="eyebrow" style="margin-top:30px">Frammistaða ráðherra</div>
+    <h2 class="sec" style="font-size:1.4rem">Hver stóð sig best — og verst?</h2>
+    <p class="lede">Maskína spurði hvaða ráðherra fólki finnst hafa staðið sig best og verst á kjörtímabilinu. Dökka súlan til vinstri sýnir „verst", appelsínugula til hægri „best"; talan lengst til hægri er nettóstaða. Ráðherrar Viðreisnar eru auðkenndir. Áberandi: Þorbjörg Sigríður er næst-best metni ráðherra stjórnarinnar, en Þorgerður Katrín skiptir fólki mest.</p>
+    <div class="card">
+      <div class="rv-legend"><span><i class="rv-sw neg"></i>Staðið sig verst</span><span><i class="rv-sw pos"></i>Staðið sig best</span><span>Nettó = best − verst</span></div>
+      ${rfRows}
+      <p class="bar-sub" style="margin-top:12px">${rf.heimild}</p>
     </div>
     <div class="disclaimer" style="margin-top:22px">Til athugunar: ráðherraskipan getur breyst. Staðfestu á stjornarradid.is áður en vitnað er í tölur eða embætti opinberlega.</div>
   </section>`;
@@ -1228,6 +1364,35 @@ function panelThingmal(){
     <p class="lede">${total6} lög frá ráðuneytum Viðreisnar sem náðu fram að ganga á fyrsta þingi ríkisstjórnarinnar. Hér eru aðeins talin mál sem urðu að lögum. Smelltu til að opna lagatextann á althingi.is.</p>
     ${groups6}
     <div class="disclaimer" style="margin-top:18px">Byggt á yfirliti yfir samþykkt lög á 156. þingi (althingi.is). Sú síða tilgreinir ekki flutningsmann; flokkun eftir ráðuneyti byggist á efnissviði málanna. Veiðigjaldið (55/2025) og varnarmálalögin (51/2025) eru staðfest sem stjórnarfrumvörp viðkomandi ráðherra Viðreisnar.</div>
+  </section>`;
+}
+
+/* ---- Sveitarstjórnarmál ---- */
+function panelSveitarMal(){
+  const S = DATA.sveitarMal;
+  const lbl = {"samþykkt":"Samþykkt","lagt fram":"Lagt fram","kynntur":"Kynntur"};
+  const groups = S.sveitarfelog.map(sf=>{
+    const rows = sf.mal.map(it=>{
+      const note = it.n ? ` <span class="tm-note">(${it.n})</span>` : '';
+      const sc = it.s==='samþykkt' ? 'sm-ok' : 'sm-pend';
+      return `<div class="tm-item sm-item">
+        <span class="tm-type ${sc}">${lbl[it.s]||it.s}</span>
+        <span class="tm-main"><span class="tm-title">${it.t}</span>${note}</span>
+      </div>`;
+    }).join('');
+    return `<div class="tm-group">
+      <div class="tm-ghead"><h3>${sf.name}</h3><span class="tm-count">${sf.fundur}</span></div>
+      <div class="tm-gsub">${sf.meiri}</div>
+      <div class="sm-roles">${sf.hlutverk}</div>
+      <div class="tm-list">${rows}</div>
+    </div>`;
+  }).join('');
+  return `<section class="panel" id="p-sveitarmal">
+    <div class="eyebrow">Sveitarstjórnarmál · meirihlutasveitarfélög Viðreisnar</div>
+    <h2 class="sec">Samþykkt mál í bæjar- og borgarstjórn</h2>
+    <p class="lede">${S.note}</p>
+    ${groups}
+    <div class="disclaimer" style="margin-top:18px">„Samþykkt" merkir afgreitt í bæjar-/borgarstjórn; „Lagt fram"/„Kynntur" er komið fram en ekki fullafgreitt. Byggt á fyrstu fundum nýrra sveitarstjórna (júní 2026) og málefnasamningum. Listinn uppfærist ekki sjálfkrafa — bætið við jafnóðum og mál eru afgreidd í haust.</div>
   </section>`;
 }
 
