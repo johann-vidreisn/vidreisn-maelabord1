@@ -187,6 +187,27 @@
   .rv-sw{display:inline-block;width:11px;height:11px;border-radius:2px;vertical-align:-1px;margin-right:4px}
   .rv-sw.neg{background:#6b6258}
   .rv-sw.pos{background:var(--orange)}
+  .ss-prog{display:flex;height:12px;border-radius:6px;overflow:hidden;margin-top:8px;background:var(--paper-2)}
+  .ss-seg{height:100%}
+  .ss-p-lokid{background:#2f7d4f}
+  .ss-p-vinnsla{background:var(--orange)}
+  .ss-p-ekki{background:var(--line)}
+  .ss-leg{display:flex;gap:16px;flex-wrap:wrap;font-size:.74rem;color:var(--ink-soft);margin:8px 0 0}
+  .ss-sw{display:inline-block;width:11px;height:11px;border-radius:2px;vertical-align:-1px;margin-right:4px}
+  .ss-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .ss-row:last-child{border-bottom:none}
+  .ss-icon{flex:0 0 16px;font-weight:700;text-align:center;line-height:1.3}
+  .ss-lokid .ss-icon{color:#2f7d4f}
+  .ss-vinnsla .ss-icon{color:var(--orange-deep)}
+  .ss-ekki .ss-icon{color:var(--ink-soft)}
+  .ss-num{flex:0 0 20px;color:var(--ink-soft);font-size:.78rem;font-weight:600;text-align:right;line-height:1.3}
+  .ss-body{flex:1;min-width:0}
+  .ss-t{display:block;font-weight:600;font-size:.88rem;line-height:1.3}
+  .ss-n{display:block;font-size:.76rem;color:var(--ink-soft);margin-top:3px}
+  .ss-badge{flex:0 0 auto;font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:5px;white-space:nowrap;align-self:flex-start;text-transform:uppercase;letter-spacing:.03em}
+  .ss-b-lokid{background:#e3f0e6;color:#2f7d4f}
+  .ss-b-vinnsla{background:var(--orange-soft);color:var(--orange-deep)}
+  .ss-b-ekki{background:var(--paper-2);color:var(--ink-soft)}
   .fund-empty{color:var(--line)}
   @media(max-width:680px){.sf-note{display:none}}
   .sokn-row{padding:11px 0;border-bottom:1px solid var(--line)}
@@ -360,7 +381,6 @@ const DATA = {
       {t:"Nóv ’24", v:15.5, src:"Gallup þjóðarpúls"},
       {t:"Júlí ’25", v:14.6, src:"Gallup þjóðarpúls"},
       {t:"Sept ’25", v:12.9, src:"Gallup þjóðarpúls"},
-      {t:"Feb ’26", v:13.5, src:"Prósent"},
       {t:"Maí ’26", v:10.6, src:"Gallup þjóðarpúls"}
     ]
   },
@@ -393,6 +413,37 @@ const DATA = {
       {n:"Eyjólfur Ármannsson", r:"innviða · Flokkur fólksins", best:1.3, verst:8.7},
       {n:"Þorgerður Katrín", r:"utanríkis · Viðreisn", best:6.7, verst:19.8, v:true},
       {n:"Inga Sæland", r:"mennta/barna · Flokkur fólksins", best:10.5, verst:24.6}
+    ]
+  },
+
+  /* ---- Stjórnarsáttmáli: stefnuyfirlýsing ríkisstjórnarinnar (21. des 2024) ---- */
+  stjornarsattmali: {
+    heimild:"Stefnuyfirlýsing ríkisstjórnar Samfylkingar, Viðreisnar og Flokks fólksins, 21. desember 2024",
+    note:"Staðan miðast við lagasetningu og afgreiðslu mála á 156.–157. löggjafarþingi (júní 2026). „Lokið“ er notað um afmörkuð fyrirheit sem hafa verið efnd að fullu; flest fyrirheit sáttmálans eru víðtæk og fjölþætt og því merkt „í vinnslu“ þótt umtalsverð skref hafi verið stigin. Þetta er vinnumat byggt á staðfestri lagasetningu — auðvelt að uppfæra í gögnunum eftir pólitísku mati.",
+    lid:[
+      {t:"Ríkisfjármál, stöðugleikaregla og hagræðing", n:"Stöðugleikaregla lögfest (49/2025); hallalaus fjárlög 2026; hagræðingar- og sameiningarvinna í gangi", s:"vinnsla"},
+      {t:"Auðlindastefna, réttlát auðlindagjöld og auðlindaákvæði í stjórnarskrá", n:"Veiðigjöld leiðrétt (55/2025); auðlindaákvæði í stjórnarskrá enn ókomið", s:"vinnsla"},
+      {t:"Samgöngur, jarðgöng, Sundabraut og veggjöld", n:"Kílómetragjald lögfest (100/2025); samgönguáætlun 2026–2040 lögð fram", s:"vinnsla"},
+      {t:"Bráðaaðgerðir í húsnæðismálum og jafnvægi á markaði", n:"Hlutdeildarlán fest í sessi (93/2025); skammtímaleiga (25/2026); skráning leigusamninga (72/2025); sameining HMS og Skipulagsstofnunar (11/2026)", s:"vinnsla"},
+      {t:"Atvinnustefna og aðgerðir gegn félagslegum undirboðum", n:"Keðjuábyrgð og hert vinnustaðaeftirlit enn ókomin í lög", s:"ekki"},
+      {t:"Aukin orkuöflun, flutningskerfi og einfaldari leyfisveitingar", n:"Einföldun leyfisferla (30/2026); raforkulög (45/2026); orkunýtingaráætlun (17/2026)", s:"vinnsla"},
+      {t:"Loftslagsaðgerðir — kolefnishlutleysi 2040 og hafvernd", n:"ETS-kerfið (106/2025); vernd líffræðilegrar fjölbreytni hafsins (86/2025)", s:"vinnsla"},
+      {t:"Stöðva kjaragliðnun, hækka lífeyri og nýtt örorkukerfi", n:"Launavísitölutenging lífeyris (26/2026); hækkun frítekjumarks ellilífeyris (95/2025); nýtt örorkulífeyriskerfi", s:"vinnsla"},
+      {t:"Lögfesta SÞ-samning um réttindi fatlaðs fólks og NPA", n:"Samningur SÞ um réttindi fatlaðs fólks lögfestur (80/2025)", s:"lokid"},
+      {t:"Fjölbreytt atvinnulíf, samkeppniseftirlit og lög um gervigreind", n:"Lagaumgjörð um gervigreind enn ókomin", s:"ekki"},
+      {t:"Ferðaþjónusta — auðlindagjald og komugjöld", n:"Auðlindagjald/komugjöld ekki enn lögfest", s:"ekki"},
+      {t:"Matvælaframleiðsla, sjávarútvegur, strandveiðar og fiskeldi", n:"Veiðigjald (55/2025); fiskveiðistjórn (46/2026); grásleppa (18/2026); lagareldisfrumvarp lagt fram", s:"vinnsla"},
+      {t:"Stuðningur við listir, menningu og íslenska tungu", n:"Bíður frekari aðgerða", s:"ekki"},
+      {t:"Heilbrigðis- og öldrunarþjónusta, heimilislæknir og biðlistar barna", n:"Sjúkraskrár (81/2025); slysatryggingar (16/2026); sjúkratryggingar og ófrjósemisaðgerðir", s:"vinnsla"},
+      {t:"Sókn í menntamálum — læsi, iðnnám og snjalltæki í skólum", n:"Grunnskólar — símar og snjalltæki (21/2026); menntasjóður (70/2025); opinberir háskólar", s:"vinnsla"},
+      {t:"Jöfn staða og réttindi allra og virði kvennastarfa", n:"Jöfn staða kynjanna — skýrslugjöf um kynbundinn launamun (lög, júní 2026)", s:"vinnsla"},
+      {t:"Aukið öryggi, fjölgun lögreglu og barátta gegn skipulagðri brotastarfsemi", n:"Brottfararstöð (lög, júní 2026); aðgerðir gegn skipulagðri brotastarfsemi", s:"vinnsla"},
+      {t:"Bætt samskipti ríkis og sveitarfélaga og efling dreifðra byggða", n:"Bíður frekari aðgerða (m.a. jöfnun á dreifikostnaði raforku)", s:"ekki"},
+      {t:"Breytingar á fæðingarorlofskerfi og barnabótum", n:"Fæðingar- og foreldraorlof — fyrirkomulag greiðslna (94/2025)", s:"vinnsla"},
+      {t:"Útlendingamál — íslenskunám, samræmi við nágranna og afturköllun verndar", n:"Afturköllun alþjóðlegrar verndar (12/2026); Schengen (29/2026); brottvísun erlendra fanga; verndarsamkomulag ESB (lög, júní 2026)", s:"vinnsla"},
+      {t:"Lausn í málefnum Grindavíkurbæjar", n:"Afurðasjóður Grindavíkurbæjar (90/2025); kosningalög vegna Grindavíkur (13/2026)", s:"vinnsla"},
+      {t:"Breyting á kosningalögum til að auka jafnræði í atkvæðavægi", n:"Endurskoðun atkvæðavægis enn ókomin", s:"ekki"},
+      {t:"Utanríkisstefna, ESB-þjóðaratkvæði og skýrsla um gjaldmiðilsmál", n:"Utanríkis- og varnarmálastefna lögð fram; þingsályktun um þjóðaratkvæði um framhald ESB-viðræðna samþykkt (ályktun 14/157, kosning 29. ágúst 2026); óháð sérfræðiskýrsla um gjaldmiðilsmál komin út og opinberuð", s:"lokid"}
     ]
   },
 
@@ -928,6 +979,7 @@ const DATA = {
 
     /* Ríkisstjórn og traust */
     {d:"des 2024", t:"Stjórnarráðið — ráðuneyti Kristrúnar Frostadóttur skipað", u:"https://www.stjornarradid.is/efst-a-baugi/frettir/stok-frett/2024/12/21/Fyrsta-raduneyti-Kristrunar-Frostadottur-skipad/"},
+    {d:"des 2024", t:"Stefnuyfirlýsing ríkisstjórnar Samfylkingar, Viðreisnar og Flokks fólksins (stjórnarsáttmáli, 21. des. 2024)", u:null},
     {d:"mars 2025", t:"Stjórnarráðið — veiðigjöld í sjávarútvegi leiðrétt (Hanna Katrín)", u:"https://www.stjornarradid.is/efst-a-baugi/frettir/stok-frett/2025/03/25/Veidigjold-i-sjavarutvegi-leidrett-/"},
     {d:"des 2025", t:"Grein Kristrúnar — árangur ríkisstjórnar á fyrsta ári", u:"https://www.stjornarradid.is/gogn/raeda/2025/12/22/Samstiga-rikisstjorn-i-sigri-og-thraut-Grein-Kristrunar-Frostadottur-forsaetisradherra-a-Visi-21.-desember-2025/"},
     {d:"feb 2025", t:"Alþingi — vaxandi traust til Alþingis (Gallup þjóðarpúls)", u:"https://www.althingi.is/tilkynningar/vaxandi-traust-til-althingis"},
@@ -1119,7 +1171,7 @@ function panelFylgi(){
       <div class="card" style="grid-column:span 2">
         <div class="eyebrow" style="margin-bottom:8px">${DATA.fylgiSaga.label}</div>
         ${lineChart(DATA.fylgiSaga)}
-        <p class="bar-sub" style="margin-top:8px">Ferningur = kjörfylgi (alþingiskosningar nóv. 2024). Hringir = skoðanakannanir, með heimild undir hverjum punkti. Blanda af Gallup þjóðarpúlsi og Prósent.</p>
+        <p class="bar-sub" style="margin-top:8px">Ferningur = kjörfylgi (alþingiskosningar nóv. 2024). Hringir = mánaðarmælingar Gallup þjóðarpúls. Einum samanburði haldið við eina könnunaraðferð svo þróunin sé samræmd.</p>
       </div>
     </div>
     <div class="card" style="margin-bottom:26px">
@@ -1276,6 +1328,20 @@ function panelRikisstjorn(){
       <div class="rv-net ${net>=0?'pos':'neg'}">${netStr}</div>
     </div>`;
   }).join('');
+
+  const ss = DATA.stjornarsattmali;
+  const ssLbl = {lokid:'Lokið', vinnsla:'Í vinnslu', ekki:'Óhafið'};
+  const ssIcon = {lokid:'✓', vinnsla:'●', ekki:'○'};
+  const nL = ss.lid.filter(x=>x.s==='lokid').length;
+  const nV = ss.lid.filter(x=>x.s==='vinnsla').length;
+  const nE = ss.lid.filter(x=>x.s==='ekki').length;
+  const N = ss.lid.length;
+  const ssRows = ss.lid.map((it,i)=>`<div class="ss-row ss-${it.s}">
+    <span class="ss-icon">${ssIcon[it.s]}</span>
+    <span class="ss-num">${i+1}.</span>
+    <span class="ss-body"><span class="ss-t">${it.t}</span>${it.n?`<span class="ss-n">${it.n}</span>`:''}</span>
+    <span class="ss-badge ss-b-${it.s}">${ssLbl[it.s]}</span>
+  </div>`).join('');
   return `<section class="panel" id="p-rikisstjorn">
     <div class="eyebrow">Ráðherrar Viðreisnar</div>
     <h2 class="sec">Viðreisn í ríkisstjórn</h2>
@@ -1298,6 +1364,17 @@ function panelRikisstjorn(){
       <p class="bar-sub" style="margin-top:12px">${rf.heimild}</p>
     </div>
     <div class="disclaimer" style="margin-top:22px">Til athugunar: ráðherraskipan getur breyst. Staðfestu á stjornarradid.is áður en vitnað er í tölur eða embætti opinberlega.</div>
+    <div class="eyebrow" style="margin-top:32px">Stjórnarsáttmáli</div>
+    <h2 class="sec" style="font-size:1.4rem">Stefnuyfirlýsing ríkisstjórnarinnar — staða verkefna</h2>
+    <p class="lede">${ss.heimild}. Alls ${N} aðgerðir: ${nL} lokið, ${nV} í vinnslu og ${nE} óhafnar (m.v. lagasetningu í júní 2026).</p>
+    <div class="ss-prog">
+      <div class="ss-seg ss-p-lokid" style="width:${(nL/N*100).toFixed(1)}%"></div>
+      <div class="ss-seg ss-p-vinnsla" style="width:${(nV/N*100).toFixed(1)}%"></div>
+      <div class="ss-seg ss-p-ekki" style="width:${(nE/N*100).toFixed(1)}%"></div>
+    </div>
+    <div class="ss-leg"><span><i class="ss-sw ss-p-lokid"></i>Lokið</span><span><i class="ss-sw ss-p-vinnsla"></i>Í vinnslu</span><span><i class="ss-sw ss-p-ekki"></i>Óhafið</span></div>
+    <div class="card" style="margin-top:6px">${ssRows}</div>
+    <div class="disclaimer" style="margin-top:14px">${ss.note}</div>
   </section>`;
 }
 
